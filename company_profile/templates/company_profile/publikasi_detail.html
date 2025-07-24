@@ -1,0 +1,102 @@
+{# emydnpajak_project/company_profile/templates/company_profile/publikasi_detail.html #}
+{% extends "base.html" %}
+{% load i18n static %}
+
+{% block title %}{{ publikasi.judul }} - {% trans "Publikasi" %}{% endblock %}
+
+{% block content %}
+<div class="container mx-auto px-4 py-8">
+    {# Breadcrumbs #}
+    <nav class="text-sm breadcrumbs mb-6">
+        <ul>
+            <li><a href="{% url 'home' %}">{% trans "Beranda" %}</a></li>
+            <li><a href="{% url 'publikasi' %}">{% trans "Publikasi" %}</a></li>
+            <li>{{ publikasi.judul }}</li>
+        </ul>
+    </nav>
+
+    <div class="bg-white shadow-lg rounded-lg p-6 lg:flex lg:space-x-8">
+        {# Kolom Kiri: Gambar Sampul dan Tombol Aksi #}
+        <div class="lg:w-1/3 flex-shrink-0 mb-6 lg:mb-0">
+            {% if publikasi.gambar_sampul %}
+            <img src="{{ publikasi.gambar_sampul.url }}" alt="Cover {{ publikasi.judul }}" class="w-full h-auto object-cover rounded-lg shadow-md">
+            {% else %}
+            <div class="w-full h-64 bg-gray-200 flex items-center justify-center text-gray-500 rounded-lg shadow-md">
+                {% trans "Tidak Ada Gambar Sampul" %}
+            </div>
+            {% endif %}
+
+            <div class="mt-6 space-y-3">
+                {% if publikasi.file_publikasi %}
+                <a href="{{ publikasi.file_publikasi.url }}" target="_blank" class="block w-full px-6 py-3 bg-orange-500 text-white font-semibold rounded-md hover:bg-orange-600 transition duration-300 text-center flex items-center justify-center">
+                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+                    {% trans "Unduh PDF" %}
+                </a>
+                {% endif %}
+
+                {% if publikasi.link_eksternal %}
+                <a href="{{ publikasi.link_eksternal }}" target="_blank" class="block w-full px-6 py-3 bg-blue-500 text-white font-semibold rounded-md hover:bg-blue-600 transition duration-300 text-center flex items-center justify-center">
+                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+                    {% trans "Lihat Publikasi" %}
+                </a>
+                {% endif %}
+
+                {# Bagian Buku Ini jika ada, mirip dengan DDTC #}
+                {% if publikasi.link_eksternal or publikasi.file_publikasi %}
+                <div class="mt-6 p-4 border border-gray-200 rounded-md bg-gray-50">
+                    <h4 class="text-md font-semibold text-gray-700 mb-2">{% trans "Akses Publikasi Ini:" %}</h4>
+                    <p class="text-sm text-gray-600">
+                        {# Tambahkan ikon atau teks sesuai kebutuhan #}
+                        {% if publikasi.link_eksternal %}<span class="block mb-1">{% trans "Tersedia Online" %}</span>{% endif %}
+                        {% if publikasi.file_publikasi %}<span class="block">{% trans "Tersedia sebagai PDF" %}</span>{% endif %}
+                    </p>
+                </div>
+                {% endif %}
+                
+                {# Anda bisa menambahkan social share buttons di sini jika diperlukan #}
+                
+                <div class="mt-4 p-4 border-t border-gray-200">
+                    <h4 class="text-md font-semibold text-gray-700 mb-2">{% trans "Bagikan Publikasi Ini:" %}</h4>
+                    <div class="flex space-x-3">
+                        <a href="https://www.facebook.com/sharer/sharer.php?u={{ request.build_absolute_uri }}" target="_blank" class="text-blue-600 hover:text-blue-800"><i class="fab fa-facebook-square fa-lg"></i></a>
+                        <a href="https://twitter.com/intent/tweet?url={{ request.build_absolute_uri }}&text={{ publikasi.judul|urlencode }}" target="_blank" class="text-blue-400 hover:text-blue-600"><i class="fab fa-twitter-square fa-lg"></i></a>
+                        <a href="https://www.linkedin.com/shareArticle?mini=true&url={{ request.build_absolute_uri }}&title={{ publikasi.judul|urlencode }}" target="_blank" class="text-blue-700 hover:text-blue-900"><i class="fab fa-linkedin fa-lg"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {# Kolom Kanan: Detail Publikasi #}
+        <div class="lg:w-2/3">
+            {% if publikasi.kategori %}
+            <span class="inline-block bg-gray-200 text-gray-800 text-sm font-semibold px-3 py-1 rounded-full mb-3">{{ publikasi.kategori.nama }}</span>
+            {% endif %}
+            
+            <h1 class="text-3xl lg:text-4xl font-bold text-gray-800 mb-3">{{ publikasi.judul }}</h1>
+            
+            {% if publikasi.penulis %}
+            <p class="text-gray-600 text-lg mb-4"><strong>{% trans "Penulis" %}:</strong> {{ publikasi.penulis }}</p>
+            {% endif %}
+
+            <div class="text-gray-700 leading-relaxed mb-6 prose max-w-none">
+                {{ publikasi.keterangan_lengkap|safe }} {# Gunakan 'safe' jika keterangan_lengkap bisa berisi HTML #}
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-gray-700 text-sm border-t pt-4 mt-4">
+                {% if publikasi.penerbit %}
+                <div><strong>{% trans "Penerbit" %}:</strong> {{ publikasi.penerbit }}</div>
+                {% endif %}
+                {% if publikasi.tanggal_publikasi %}
+                <div><strong>{% trans "Diterbitkan" %}:</strong> {{ publikasi.tanggal_publikasi|date:"d F Y" }}</div>
+                {% endif %}
+                {% if publikasi.bahasa %}
+                <div><strong>{% trans "Bahasa" %}:</strong> {{ publikasi.bahasa }}</div>
+                {% endif %}
+                {% if publikasi.halaman %}
+                <div><strong>{% trans "Halaman" %}:</strong> {{ publikasi.halaman }}</div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

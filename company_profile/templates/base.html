@@ -1,0 +1,248 @@
+{% load static %}
+{% load i18n %}
+
+<!DOCTYPE html>
+<html lang="{{ request.LANGUAGE_CODE }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Emydn Pajak{% endblock title %}</title>
+    <link rel="stylesheet" href="{% static 'css/output.css' %}">
+</head>
+<body id="top">
+    <header class="bg-white shadow-md py-4">
+        <div class="container mx-auto px-4 flex justify-between items-center">
+            <a href="{% url 'home' %}" class="flex items-center">
+                <img src="{% static 'img/logo_placeholder.png' %}" alt="Emydn Pajak Logo" class="h-10">
+            </a>
+
+            <nav class="hidden md:flex items-center space-x-6">
+                <a href="{% url 'home' %}" class="text-gray-700 hover:text-orange-500 font-semibold transition duration-300">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m0 0l7 7m-2 2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6-4h4"></path></svg>
+                </a>
+                
+                {# Dropdown 'Tentang Kami' seperti di screenshot DDTC #}
+                <div class="relative" x-data="{ open: false }" @click.outside="open = false">
+                    <a href="{% url 'nilai_kami' %}" 
+                       :class="{ 'text-orange-500': open, 'text-gray-700': !open }" 
+                       class="hover:text-orange-500 font-semibold transition duration-300 flex items-center">
+                        {% trans "Tentang Kami" %} 
+                        <span @click.prevent="open = !open" class="cursor-pointer ml-1"> <svg class="w-4 h-4 transform transition-transform" :class="{ 'rotate-180': open }" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </span>
+                    </a>
+                    <div x-show="open" x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0 scale-95" x-transition:enter-end="opacity-100 scale-100" x-transition:leave="transition ease-in duration-75" x-transition:leave-start="opacity-100 scale-100" x-transition:leave-end="opacity-0 scale-95"
+                        class="absolute bg-white shadow-lg rounded-md mt-2 w-56 py-2 z-10"
+                        style="display: none;">
+                        <a href="{% url 'nilai_kami' %}" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 flex items-center justify-between">{% trans "Nilai Kami" %} <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg></a>
+                        <a href="{% url 'tim_kami' %}" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 flex items-center justify-between">{% trans "Tim Kami" %} <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg></a>
+                        <a href="{% url 'penghargaan_pengakuan' %}" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 flex items-center justify-between">{% trans "Penghargaan & Pengakuan" %} <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg></a>
+                    </div>
+                </div>
+
+                {# Dropdown 'Industri' #}
+                <div class="relative" x-data="{ open: false }" @click.outside="open = false">
+                    <a href="{% url 'industri' %}" 
+                       :class="{ 'text-orange-500': open, 'text-gray-700': !open }" 
+                       class="hover:text-orange-500 font-semibold transition duration-300 flex items-center">
+                        {% trans "Industri" %} 
+                        <span @click.prevent="open = !open" class="cursor-pointer ml-1"> <svg class="w-4 h-4 transform transition-transform" :class="{ 'rotate-180': open }" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </span>
+                    </a>
+                    <div x-show="open" x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0 scale-95" x-transition:enter-end="opacity-100 scale-100" x-transition:leave="transition ease-in duration-75" x-transition:leave-start="opacity-100 scale-100" x-transition:leave-end="opacity-0 scale-95"
+                        class="absolute bg-white shadow-lg rounded-md mt-2 w-72 py-2 z-10 grid grid-cols-2 gap-x-4"
+                        style="display: none;">
+                        {# Untuk item di dropdown Industri, Anda bisa mengarahkan ke halaman detail per sektor jika ada #}
+                        {# Untuk saat ini, saya akan mengarahkan ke halaman Industri utama atau sub-halaman jika Anda buat #}
+                        <a href="{% url 'industri' %}#pemerintahan" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 flex items-center justify-between">{% trans "Pemerintahan & Sektor Publik" %} <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg></a>
+                        <a href="{% url 'industri' %}#manufaktur" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 flex items-center justify-between">{% trans "Manufaktur & Barang Konsumen" %} <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg></a>
+                        <a href="{% url 'industri' %}#teknologi" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 flex items-center justify-between">{% trans "Teknologi & Media" %} <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg></a>
+                        <a href="{% url 'industri' %}#jasa-keuangan" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 flex items-center justify-between">{% trans "Jasa Keuangan & Profesional" %} <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg></a>
+                        <a href="{% url 'industri' %}#kesehatan" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 flex items-center justify-between">{% trans "Kesehatan & Farmasi" %} <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg></a>
+                        <a href="{% url 'industri' %}#konstruksi" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 flex items-center justify-between">{% trans "Konstruksi & Real Estat" %} <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg></a>
+                        <a href="{% url 'industri' %}#pertambangan" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 flex items-center justify-between">{% trans "Pertambangan, Energi & Sumber Daya Alam" %} <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg></a>
+                    </div>
+                </div>
+
+                
+                {# Dropdown 'Layanan' #}
+                <div class="relative" x-data="{ open: false }" @click.outside="open = false">
+                    {# Pisahkan tautan ke halaman Layanan dari pemicu dropdown #}
+                    <a href="{% url 'layanan' %}"
+                       :class="{ 'text-orange-500': open, 'text-gray-700': !open }"
+                       class="hover:text-orange-500 font-semibold transition duration-300 flex items-center">
+                        {% trans "Layanan" %}
+                        {# Tambahkan span terpisah untuk ikon panah yang memicu dropdown #}
+                        <span @click.prevent="open = !open" class="cursor-pointer ml-1">
+                             <svg class="w-4 h-4 transform transition-transform" :class="{ 'rotate-180': open }" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </span>
+                    </a>
+                    
+                    <div x-show="open" x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0 scale-95" x-transition:enter-end="opacity-100 scale-100" x-transition:leave="transition ease-in duration-75" x-transition:leave-start="opacity-100 scale-100" x-transition:leave-end="opacity-0 scale-95"
+                         class="absolute bg-white shadow-lg rounded-md mt-2 w-auto py-2 z-10"
+                         style="display: none;">
+                        <a href="{% url 'layanan_consulting' %}" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 flex items-center justify-between">{% trans "Konsultasi Pajak" %} <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg></a>
+                        <a href="{% url 'layanan_education' %}" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 flex items-center justify-between">{% trans "Pendidikan & Pelatihan" %} <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg></a>
+                        <a href="{% url 'layanan_research' %}" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 flex items-center justify-between">{% trans "Penelitian Fiskal" %} <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg></a>
+                        <a href="{% url 'layanan_products' %}" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 flex items-center justify-between">{% trans "Produk Pajak" %} <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg></a>
+                    </div>
+                </div>
+
+                {# Dropdown 'Publikasi' #}
+                <div class="relative" x-data="{ open: false }" @click.outside="open = false">
+                    <a href="{% url 'publikasi' %}" 
+                       :class="{ 'text-orange-500': open, 'text-gray-700': !open }" 
+                       class="hover:text-orange-500 font-semibold transition duration-300 flex items-center">
+                        {% trans "Publikasi" %} 
+                        <span @click.prevent="open = !open" class="cursor-pointer ml-1"> 
+                            <svg class="w-4 h-4 transform transition-transform" :class="{ 'rotate-180': open }" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </span>
+                    </a>
+                    <div x-show="open" x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0 scale-95" x-transition:enter-end="opacity-100 scale-100" x-transition:leave="transition ease-in duration-75" x-transition:leave-start="opacity-100 scale-100" x-transition:leave-end="opacity-0 scale-95"
+                        class="absolute bg-white shadow-lg rounded-md mt-2 w-72 py-2 z-10 grid grid-cols-2 gap-x-4"
+                        style="display: none;">
+                        {# Pastikan URL di sini mengarah ke halaman yang benar jika Anda memiliki sub-halaman #}
+                        {# Saya menggunakan ID di sini, tetapi jika ada URL terpisah, ganti {% url 'publikasi' %}#id-bagian #}
+                        <a href="{% url 'publikasi' %}#indonesian-tax-manual" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 flex items-center justify-between">Indonesian Tax Manual <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg></a>
+                        <a href="{% url 'publikasi' %}#working-paper" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 flex items-center justify-between">Working Paper <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg></a>
+                        <a href="{% url 'publikasi' %}#publikasi-internasional" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 flex items-center justify-between">Publikasi Internasional <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg></a>
+                        <a href="{% url 'publikasi' %}#policy-note" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 flex items-center justify-between">Policy Note <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg></a>
+                        <a href="{% url 'publikasi' %}#buku" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 flex items-center justify-between">Buku <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg></a>
+                        <a href="{% url 'publikasi' %}#majalah-insidetax" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 flex items-center justify-between">Majalah InsideTax <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg></a>
+                        <a href="{% url 'publikasi' %}#itqr" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 flex items-center justify-between">ITQR <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg></a>
+                        <a href="{% url 'publikasi' %}#newsletter" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 flex items-center justify-between">Newsletter <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg></a>
+                    </div>
+                </div>
+                
+
+                {# Link langsung #}
+                <a href="{% url 'karir' %}" class="hover:text-orange-500 font-semibold transition duration-300">{% trans "Karir" %}</a>
+                <a href="{% url 'jaringan' %}" class="hover:text-orange-500 font-semibold transition duration-300">{% trans "Jaringan" %}</a>
+                <a href="{% url 'kontak' %}" class="hover:text-orange-500 font-semibold transition duration-300">{% trans "Kontak" %}</a>
+            </nav>
+
+            <div class="flex items-center space-x-4">
+                {# Ubah select menjadi div dengan dua button untuk tampilan text box #}
+                <div class="flex items-center space-x-2 border border-gray-300 rounded-md p-0.5"> {# Outer border #}
+                    <form action="{% url 'set_language' %}" method="post" class="m-0 p-0">{% csrf_token %}
+                        <input name="language" type="hidden" value="id">
+                        <input type="hidden" name="next" value="{{ request.path }}">
+                        <button type="submit" 
+                                class="{% if request.LANGUAGE_CODE == 'id' %}bg-orange-500 text-white{% else %}bg-transparent text-gray-700{% endif %} 
+                                        hover:bg-orange-400 hover:text-white 
+                                        font-semibold py-1 px-3 rounded-sm text-sm 
+                                        focus:outline-none transition-colors duration-200">ID</button>
+                    </form>
+                    <form action="{% url 'set_language' %}" method="post" class="m-0 p-0">{% csrf_token %}
+                        <input name="language" type="hidden" value="en">
+                        <input type="hidden" name="next" value="{{ request.path }}">
+                        <button type="submit" 
+                                class="{% if request.LANGUAGE_CODE == 'en' %}bg-orange-500 text-white{% else %}bg-transparent text-gray-700{% endif %} 
+                                        hover:bg-orange-400 hover:text-white 
+                                        font-semibold py-1 px-3 rounded-sm text-sm 
+                                        focus:outline-none transition-colors duration-200">EN</button>
+                    </form>
+                </div>
+                
+                <button class="md:hidden text-gray-700 focus:outline-none">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        {% block content %}
+        {% endblock content %}
+    </main>
+
+    {# Sidebar Kecil di Kanan - Dikembalikan #}
+    <div x-data="{ open: true }" class="fixed right-0 top-1/3 transform -translate-y-1/2 z-50">
+        <div class="flex items-center">
+            <button @click="open = !open" class="bg-orange-500 hover:bg-orange-600 text-white p-2 rounded-l-lg shadow-lg focus:outline-none">
+                <svg :class="{ 'rotate-180': open }" class="w-6 h-6 transform transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+            </button>
+            <div x-show="open" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 translate-x-full" x-transition:enter-end="opacity-100 translate-x-0" x-transition:leave="transition ease-in duration-300" x-transition:leave-start="opacity-100 translate-x-0" x-transition:leave-end="opacity-0 translate-x-full"
+                class="bg-white shadow-lg rounded-l-lg p-4 w-56 border border-gray-200"
+                style="display: none;">
+                <h3 class="text-xl font-bold text-gray-800 mb-4">{% trans "Layanan Kami" %}</h3>
+                <ul class="space-y-3">
+                    <li>
+                        {# Ganti '#' dengan URL layanan yang sebenarnya #}
+                        <a href="#" class="flex items-center text-gray-700 hover:text-orange-500 transition duration-300">
+                            <svg class="w-5 h-5 mr-3 text-orange-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-1-3m-6-10L10 4m-2 6h.01M12 10h.01M16 10h.01M12 12h.01M16 12h.01M18 12h.01M6 14h.01M9 14h.01M12 14h.01M16 14h.01M18 14h.01M12 16h.01M16 16h.01M18 16h.01M20 20H4a2 2 0 01-2-2V6a2 2 0 012-2h16a2 2 0 012 2v12a2 2 0 01-2 2z"></path></svg>
+                            {% trans "Konsultasi Pajak" %}
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="flex items-center text-gray-700 hover:text-orange-500 transition duration-300">
+                            <svg class="w-5 h-5 mr-3 text-orange-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.206 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.794 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.794 5 16.5 5c1.706 0 3.332.477 4.5 1.253v13C19.832 18.477 18.206 18 16.5 18c-1.706 0-3.332.477-4.5 1.253"></path></svg>
+                            {% trans "Pendidikan & Pelatihan" %}
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="flex items-center text-gray-700 hover:text-orange-500 transition duration-300">
+                            <svg class="w-5 h-5 mr-3 text-orange-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path></svg>
+                            {% trans "Penelitian Fiskal" %}
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="flex items-center text-gray-700 hover:text-orange-500 transition duration-300">
+                            <svg class="w-5 h-5 mr-3 text-orange-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 8h10M7 12h10M7 16h10M9 18h6M5 21V3a2 2 0 012-2h10a2 2 0 012 2v18l-5-2-5 2-5-2z"></path></svg>
+                            {% trans "Produk Pajak" %}
+                        </a>
+                    </li>
+                </ul>
+                <a href="#top" class="mt-4 inline-flex items-center text-sm text-orange-500 hover:underline">
+                    <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"></path></svg>
+                    {% trans "Kembali ke Atas" %}
+                </a>
+            </div>
+        </div>
+    </div>
+
+
+    <footer class="bg-gray-800 text-gray-300 py-8 mt-12">
+        <div class="container mx-auto px-4 grid grid-cols-1 md:grid-cols-4 gap-8">
+            <div>
+                <img src="{% static 'img/logo_placeholder_white.png' %}" alt="Emydn Pajak Logo Putih" class="h-10 mb-4">
+                <p class="text-sm">
+                    {% trans "Menyediakan solusi pajak dan konsultasi bisnis terbaik untuk Anda." %}
+                </p>
+            </div>
+            <div>
+                <h3 class="text-lg font-semibold text-white mb-4">{% trans "Quick Links" %}</h3>
+                <ul>
+                    <li class="mb-2"><a href="{% url 'home' %}" class="hover:text-orange-500 transition duration-300">{% trans "Beranda" %}</a></li>
+                    <li class="mb-2"><a href="{% url 'nilai_kami' %}" class="hover:text-orange-500 transition duration-300">{% trans "Tentang Kami" %}</a></li>
+                    <li class="mb-2"><a href="{% url 'layanan' %}" class="hover:text-orange-500 transition duration-300">{% trans "Layanan" %}</a></li> {# Arahkan ke salah satu layanan utama #}
+                    <li class="mb-2"><a href="#" class="hover:text-orange-500 transition duration-300">{% trans "Publikasi" %}</a></li> {# Arahkan ke salah satu publikasi utama #}
+                    <li class="mb-2"><a href="#" class="hover:text-orange-500 transition duration-300">{% trans "Kontak" %}</a></li>
+                </ul>
+            </div>
+            <div>
+                <h3 class="text-lg font-semibold text-white mb-4">{% trans "Hubungi Kami" %}</h3>
+                <p class="text-sm">
+                    {% trans "Jl. Contoh No. 123, Jakarta Selatan" %}<br>
+                    {% trans "Telp" %}: (021) 1234 5678<br>
+                    {% trans "Email" %}: info@emydnpajak.com
+                </p>
+            </div>
+            <div>
+                <h3 class="text-lg font-semibold text-white mb-4">{% trans "Ikuti Kami" %}</h3>
+                <div class="flex space-x-4">
+                    {# Pastikan Anda memiliki ikon ini di static/img/ #}
+                    <a href="#" class="hover:text-orange-500 transition duration-300"><img src="{% static 'img/linkedin_icon.png' %}" alt="LinkedIn" class="h-6"></a>
+                    <a href="#" class="hover:text-orange-500 transition duration-300"><img src="{% static 'img/facebook_icon.png'}" alt="Facebook" class="h-6"></a>
+                    <a href="#" class="hover:text-orange-500 transition duration-300"><img src="{% static 'img/instagram_icon.png' %}" alt="Instagram" class="h-6"></a>
+                    <a href="#" class="hover:text-orange-500 transition duration-300"><img src="{% static 'img/youtube_icon.png' %}" alt="YouTube" class="h-6"></a>
+                </div>
+            </div>
+        </div>
+        <div class="border-t border-gray-700 mt-8 pt-4 text-center text-sm">
+            &copy; 2024 Emydn Pajak. {% trans "All rights reserved." %}
+        </div>
+    </footer>
+
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.1/dist/cdn.min.js"></script>
+</body>
+</html>

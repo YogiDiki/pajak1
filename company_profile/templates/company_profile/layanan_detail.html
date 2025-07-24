@@ -1,0 +1,88 @@
+{# company_profile/templates/company_profile/layanan_detail.html #}
+{% extends 'base.html' %}
+{% load i18n %}
+{% load static %}
+
+{% block title %}{{ layanan.judul }} - Nama Perusahaan Anda{% endblock %}
+
+{% block content %}
+<main>
+    {# Section Hero/Banner Utama untuk Judul Layanan #}
+    <section class="bg-gray-800 text-white py-20">
+        <div class="container mx-auto px-4 text-center">
+            <h1 class="text-4xl md:text-5xl font-bold leading-tight">{{ layanan.judul }}</h1>
+            {% if layanan.deskripsi_singkat %}
+                <p class="text-xl mt-4 max-w-2xl mx-auto">{{ layanan.deskripsi_singkat }}</p>
+            {% endif %}
+        </div>
+    </section>
+
+    {# Breadcrumb / Kembali ke Daftar Layanan #}
+    <section class="bg-gray-100 py-4">
+        <div class="container mx-auto px-4">
+            <a href="{% url 'layanan' %}" class="text-orange-600 hover:underline flex items-center">
+                <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
+                {% trans "Kembali ke Daftar Layanan" %}
+            </a>
+        </div>
+    </section>
+
+    {# Konten Detail Layanan (bisa dua kolom atau satu) #}
+    <section class="py-16">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row gap-12">
+                {# Kolom Kiri: Gambar atau Ikon Layanan #}
+                <div class="md:w-1/3 flex justify-center items-start">
+                    {% if layanan.gambar %}
+                        <img src="{{ layanan.gambar.url }}" alt="{{ layanan.judul }}" class="w-full max-w-xs md:max-w-full h-auto object-contain rounded-lg shadow-md">
+                    {% elif layanan.ikon_svg %}
+                        <div class="w-32 h-32 text-gray-700 flex items-center justify-center">
+                            {{ layanan.ikon_svg|safe }}
+                        </div>
+                    {% else %}
+                        {# Placeholder jika tidak ada gambar/ikon #}
+                        <div class="w-32 h-32 bg-gray-200 flex items-center justify-center text-gray-500 rounded-lg shadow-md">
+                            <svg class="w-16 h-16" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                        </div>
+                    {% endif %}
+                </div>
+
+                {# Kolom Kanan: Deskripsi Lengkap Layanan #}
+                <div class="md:w-2/3">
+                    <h2 class="text-3xl font-bold text-gray-800 mb-6">{% trans "Tentang Layanan Ini" %}</h2>
+                    <div class="prose prose-lg max-w-none"> {# Tailwind Typography untuk styling konten kaya #}
+                        {% if layanan.deskripsi_lengkap %}
+                            {{ layanan.deskripsi_lengkap|safe }} {# Gunakan |safe jika deskripsi lengkap berisi HTML #}
+                        {% else %}
+                            <p class="text-gray-600">{% trans "Deskripsi lengkap untuk layanan ini belum tersedia." %}</p>
+                        {% endif %}
+                    </div>
+
+                    {# Anda bisa menambahkan detail lain di sini, seperti tanggal, dll. #}
+                    <div class="mt-8 text-gray-600 text-sm">
+                        {% if layanan.tanggal_publikasi %}
+                            <p>{% trans "Tanggal Publikasi:" %} {{ layanan.tanggal_publikasi|date:"d M Y" }}</p>
+                        {% endif %}
+                        {% if layanan.penulis %}
+                            <p>{% trans "Penulis:" %} {{ layanan.penulis }}</p>
+                        {% endif %}
+                        {# Tambahkan lebih banyak field sesuai kebutuhan #}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    {# Bagian Tambahan di Bawah (Opsional, seperti "Temukan Peluang Karier Anda" dari gambar) #}
+    <section class="bg-blue-800 text-white py-16 mt-12" style="background-image: url('{% static 'path/to/your/career_banner.jpg' %}') ; background-size: cover; background-position: center;">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-3xl md:text-4xl font-bold mb-4">{% trans "Temukan Peluang Karier Anda di DDTC" %}</h2>
+            <p class="text-lg mb-8">{% trans "Bergabunglah dengan tim kami dan bangun masa depan Anda bersama kami." %}</p>
+            <a href="{% url 'karir' %}" class="bg-orange-500 hover:bg-orange-600 text-white font-bold py-3 px-8 rounded-full transition duration-300">
+                {% trans "Lihat Karier" %}
+            </a>
+        </div>
+    </section>
+
+</main>
+{% endblock %}

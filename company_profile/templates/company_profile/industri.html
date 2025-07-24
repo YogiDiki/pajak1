@@ -1,0 +1,116 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block title %}{% trans "Industri" %} - Emydn Pajak{% endblock title %}
+
+{% block content %}
+    {# Bagian Breadcrumb #}
+    <section class="bg-gray-100 py-4">
+        <div class="container mx-auto px-4">
+            <nav class="text-sm text-gray-600">
+                <a href="{% url 'home' %}" class="hover:underline">{% trans "Beranda" %}</a>
+                <span class="mx-2">&rarr;</span>
+                <span class="font-semibold text-orange-500">{% trans "Industri" %}</span>
+            </nav>
+        </div>
+    </section>
+
+    {# Bagian Header Utama (Gambaran Umum) #}
+    <section class="bg-gray-800 py-16 text-white">
+        <div class="container mx-auto px-4 flex flex-col md:flex-row items-center justify-between">
+            <div class="md:w-1/2 mb-8 md:mb-0">
+                <h1 class="text-3xl font-bold mb-4">{% trans "Gambaran Umum" %}</h1>
+            </div>
+            <div class="md:w-1/2 md:pl-8">
+                <p class="text-lg leading-relaxed">
+                    {% trans "DDTC bermitra dengan berbagai bisnis di berbagai industri, menyediakan strategi pajak yang disesuaikan untuk mengatasi tantangan unik mereka. Solusi kami dirancang untuk meningkatkan kepatuhan, memitigasi risiko, dan membuka peluang pertumbuhan dalam lanskap pajak yang terus berkembang." %}
+                </p>
+            </div>
+        </div>
+    </section>
+
+    {# Bagian Sektor Kami #}
+    <section class="py-12 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-2xl font-bold text-gray-800 mb-8 text-center">{% trans "Sektor Kami" %}</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                {# Contoh Kartu Sektor #}
+                <div class="bg-white rounded-lg shadow-md p-6 border border-gray-200 hover:shadow-lg transition-shadow duration-300">
+                    <div class="flex items-center mb-4">
+                        {# Anda bisa mengganti ini dengan ikon SVG atau gambar kecil #}
+                        <img src="{% static 'img/icon_pemerintahan.png' %}" alt="Pemerintahan Icon" class="w-10 h-10 mr-4">
+                        <h3 class="text-lg font-semibold text-gray-800">{% trans "Pemerintahan & Sektor Publik" %}</h3>
+                    </div>
+                    <p class="text-gray-700 text-sm mb-4">{% trans "Mendukung institusi publik dengan strategi pajak inovatif untuk mengoptimalkan kebijakan dan meningkatkan efisiensi fiskal." %}</p>
+                    <a href="#" class="text-orange-500 hover:underline text-sm flex items-center">
+                        {% trans "Pelajari Lebih Lanjut" %}
+                        <span class="ml-1">&rarr;</span>
+                    </a>
+                </div>
+
+                {# Duplikasi untuk sektor lainnya #}
+                <div class="bg-white rounded-lg shadow-md p-6 border border-gray-200 hover:shadow-lg transition-shadow duration-300">
+                    <div class="flex items-center mb-4">
+                        <img src="{% static 'img/icon_manufaktur.png' %}" alt="Manufaktur Icon" class="w-10 h-10 mr-4">
+                        <h3 class="text-lg font-semibold text-gray-800">{% trans "Manufaktur & Barang Konsumen" %}</h3>
+                    </div>
+                    <p class="text-gray-700 text-sm mb-4">{% trans "Menyederhanakan operasional pajak guna mendukung pertumbuhan kompetitif dalam sektor manufaktur dan barang konsumsi cepat." %}</p>
+                    <a href="#" class="text-orange-500 hover:underline text-sm flex items-center">
+                        {% trans "Pelajari Lebih Lanjut" %}
+                        <span class="ml-1">&rarr;</span>
+                    </a>
+                </div>
+
+                <div class="bg-white rounded-lg shadow-md p-6 border border-gray-200 hover:shadow-lg transition-shadow duration-300">
+                    <div class="flex items-center mb-4">
+                        <img src="{% static 'img/icon_teknologi.png' %}" alt="Teknologi Icon" class="w-10 h-10 mr-4">
+                        <h3 class="text-lg font-semibold text-gray-800">{% trans "Teknologi & Media" %}</h3>
+                    </div>
+                    <p class="text-gray-700 text-sm mb-4">{% trans "Menyediakan perencanaan pajak yang fleksibel untuk platform digital, e-commerce, dan inovator media." %}</p>
+                    <a href="#" class="text-orange-500 hover:underline text-sm flex items-center">
+                        {% trans "Pelajari Lebih Lanjut" %}
+                        <span class="ml-1">&rarr;</span>
+                    </a>
+                </div>
+
+                <div class="bg-white rounded-lg shadow-md p-6 border border-gray-200 hover:shadow-lg transition-shadow duration-300">
+                    <div class="flex items-center mb-4">
+                        <img src="{% static 'img/icon_jasa_keuangan.png' %}" alt="Jasa Keuangan Icon" class="w-10 h-10 mr-4">
+                        <h3 class="text-lg font-semibold text-gray-800">{% trans "Jasa Keuangan & Profesional" %}</h3>
+                    </div>
+                    <p class="text-gray-700 text-sm mb-4">{% trans "Memberikan solusi pajak yang disesuaikan untuk bank, perusahaan investasi, dan penyedia layanan profesional." %}</p>
+                    <a href="#" class="text-orange-500 hover:underline text-sm flex items-center">
+                        {% trans "Pelajari Lebih Lanjut" %}
+                        <span class="ml-1">&rarr;</span>
+                    </a>
+                </div>
+
+                <div class="bg-white rounded-lg shadow-md p-6 border border-gray-200 hover:shadow-lg transition-shadow duration-300">
+                    <div class="flex items-center mb-4">
+                        <img src="{% static 'img/icon_kesehatan.png' %}" alt="Kesehatan Icon" class="w-10 h-10 mr-4">
+                        <h3 class="text-lg font-semibold text-gray-800">{% trans "Kesehatan & Farmasi" %}</h3>
+                    </div>
+                    <p class="text-gray-700 text-sm mb-4">{% trans "Memastikan kepatuhan sekaligus mendorong inovasi dalam sektor kesehatan dan ilmu hayat." %}</p>
+                    <a href="#" class="text-orange-500 hover:underline text-sm flex items-center">
+                        {% trans "Pelajari Lebih Lanjut" %}
+                        <span class="ml-1">&rarr;</span>
+                    </a>
+                </div>
+
+                <div class="bg-white rounded-lg shadow-md p-6 border border-gray-200 hover:shadow-lg transition-shadow duration-300">
+                    <div class="flex items-center mb-4">
+                        <img src="{% static 'img/icon_konstruksi.png' %}" alt="Konstruksi Icon" class="w-10 h-10 mr-4">
+                        <h3 class="text-lg font-semibold text-gray-800">{% trans "Konstruksi & Real Estate" %}</h3>
+                    </div>
+                    <p class="text-gray-700 text-sm mb-4">{% trans "Meningkatkan profitabilitas dan kepatuhan bagi pengembang serta proyek infrastruktur." %}</p>
+                    <a href="#" class="text-orange-500 hover:underline text-sm flex items-center">
+                        {% trans "Pelajari Lebih Lanjut" %}
+                        <span class="ml-1">&rarr;</span>
+                    </a>
+                </div>
+                {# Tambahkan lebih banyak sektor di sini jika ada #}
+            </div>
+        </div>
+    </section>
+{% endblock content %}

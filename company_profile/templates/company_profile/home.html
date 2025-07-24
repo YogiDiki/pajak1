@@ -1,0 +1,185 @@
+{% extends 'base.html' %}
+{% load static %} {# BARIS PENTING INI HARUS ADA UNTUK MENGGUNAKAN {% static %} #}
+
+{% block title %}Beranda - Emydn Pajak{% endblock title %}
+
+{% block content %}
+
+{# Bagian Tentang Kami #}
+<section class="container mx-auto px-4 py-16">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+        <div class="relative">
+            <img src="{% static 'img/ddtc_team.jpg' %}" alt="DDTC Team" class="w-full h-auto rounded-lg shadow-lg">
+            <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-50 rounded-lg"></div>
+            <div class="absolute bottom-4 left-4 text-white text-3xl font-bold">DDTC</div>
+        </div>
+        <div>
+            <h2 class="text-orange-500 text-sm font-semibold uppercase mb-2">Tentang Kami</h2>
+            <h3 class="text-4xl font-bold text-gray-800 mb-6">Siapa Kami</h3>
+            <p class="text-gray-600 leading-relaxed mb-6">
+                DDTC adalah konsultan pajak dari Indonesia dengan spesialisasi jasa perpajakan domestik maupun internasional.
+            </p>
+            <p class="text-gray-600 leading-relaxed mb-8">
+                Dengan dukungan tim ahli, riset mendalam, serta teknologi terkini, kami menghadirkan solusi yang mendorong pertumbuhan dan keselarasan klien. Visi kami adalah menjadi standar utama di bidang perpajakan.
+            </p>
+            <a href="#" class="inline-block bg-orange-500 hover:bg-orange-600 text-white font-semibold py-3 px-8 rounded-lg shadow-md transition duration-300">Pelajari Lebih Lanjut</a>
+        </div>
+    </div>
+</section>
+
+{# Bagian Penghargaan & Pengakuan #}
+<section class="bg-gray-50 py-12">
+    <div class="container mx-auto px-4 text-center">
+        <h2 class="text-orange-500 text-sm font-semibold uppercase mb-2">Penghargaan & Pengakuan Kepada Kami</h2>
+        <h3 class="text-3xl font-bold text-gray-800 mb-8">Penghargaan yang Telah Kami Raih</h3>
+        <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
+            {# Contoh Penghargaan 1 #}
+            <div class="bg-white rounded-lg shadow-md p-4">
+                <img src="{% static 'img/award_placeholder.png' %}" alt="Award 1" class="w-full h-auto object-contain">
+                <p class="text-xs text-gray-500 mt-2">Tahun 2023</p>
+            </div>
+            {# Contoh Penghargaan 2 #}
+            <div class="bg-white rounded-lg shadow-md p-4">
+                <img src="{% static 'img/award_placeholder.png' %}" alt="Award 2" class="w-full h-auto object-contain">
+                <p class="text-xs text-gray-500 mt-2">Tahun 2022</p>
+            </div>
+            {# Tambahkan lebih banyak penghargaan sesuai kebutuhan #}
+            <div class="bg-white rounded-lg shadow-md p-4">
+                <img src="{% static 'img/award_placeholder.png' %}" alt="Award 3" class="w-full h-auto object-contain">
+                <p class="text-xs text-gray-500 mt-2">Tahun 2021</p>
+            </div>
+            <div class="bg-white rounded-lg shadow-md p-4">
+                <img src="{% static 'img/award_placeholder.png' %}" alt="Award 4" class="w-full h-auto object-contain">
+                <p class="text-xs text-gray-500 mt-2">Tahun 2020</p>
+            </div>
+            <div class="bg-white rounded-lg shadow-md p-4">
+                <img src="{% static 'img/award_placeholder.png' %}" alt="Award 5" class="w-full h-auto object-contain">
+                <p class="text-xs text-gray-500 mt-2">Tahun 2019</p>
+            </div>
+            <div class="bg-white rounded-lg shadow-md p-4">
+                <img src="{% static 'img/award_placeholder.png' %}" alt="Award 6" class="w-full h-auto object-contain">
+                <p class="text-xs text-gray-500 mt-2">Tahun 2018</p>
+            </div>
+        </div>
+        <div class="mt-6">
+            <a href="#" class="inline-block bg-orange-500 hover:bg-orange-600 text-white font-semibold py-3 px-8 rounded-lg shadow-md transition duration-300">Lihat Semua Penghargaan</a>
+        </div>
+    </div>
+</section>
+
+{# Bagian Jelajahi Publikasi Kami #}
+<section class="bg-gray-100 py-16">
+    <div class="container mx-auto px-4">
+        <h2 class="text-orange-500 text-sm font-semibold uppercase text-center mb-2">Publikasi</h2>
+        <h3 class="text-4xl font-bold text-gray-800 text-center mb-10">Jelajahi Publikasi Kami</h3>
+        
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 mb-8">
+            {# Contoh Kartu Publikasi 1 #}
+            <div class="bg-white rounded-lg shadow-md p-4 text-center">
+                <img src="{% static 'img/book_placeholder.png' %}" alt="Terminologi Perpajakan" class="w-2/3 mx-auto mb-4 object-contain h-40">
+                <h4 class="font-semibold text-gray-800 mb-2">Terminologi Perpajakan: Bahasa Inggris-Bahasa Indonesia</h4>
+                <p class="text-sm text-gray-500">Buku</p>
+            </div>
+            {# Contoh Kartu Publikasi 2 #}
+            <div class="bg-white rounded-lg shadow-md p-4 text-center">
+                <img src="{% static 'img/book_placeholder.png' %}" alt="Tax Disputes And Litigation" class="w-2/3 mx-auto mb-4 object-contain h-40">
+                <h4 class="font-semibold text-gray-800 mb-2">In-Depth: Tax Disputes And Litigation</h4>
+                <p class="text-sm text-gray-500">International Publication</p>
+            </div>
+            {# Contoh Kartu Publikasi 3 #}
+            <div class="bg-white rounded-lg shadow-md p-4 text-center">
+                <img src="{% static 'img/book_placeholder.png' %}" alt="Transfer Pricing" class="w-2/3 mx-auto mb-4 object-contain h-40">
+                <h4 class="font-semibold text-gray-800 mb-2">In-Depth: Transfer Pricing</h4>
+                <p class="text-sm text-gray-500">International Publication</p>
+            </div>
+            {# Contoh Kartu Publikasi 4 #}
+            <div class="bg-white rounded-lg shadow-md p-4 text-center">
+                <img src="{% static 'img/book_placeholder.png' %}" alt="Kajian Perpajakan Indonesia" class="w-2/3 mx-auto mb-4 object-contain h-40">
+                <h4 class="font-semibold text-gray-800 mb-2">Kajian Perpajakan Indonesia</h4>
+                <p class="text-sm text-gray-500">Buku</p>
+            </div>
+            {# Contoh Kartu Publikasi 5 #}
+            <div class="bg-white rounded-lg shadow-md p-4 text-center">
+                <img src="{% static 'img/book_placeholder.png' %}" alt="Konsep dan Studi Kebijakan Pajak Pertambahan Nilai" class="w-2/3 mx-auto mb-4 object-contain h-40">
+                <h4 class="font-semibold text-gray-800 mb-2">Konsep dan Studi Kebijakan Pajak Pertambahan Nilai</h4>
+                <p class="text-sm text-gray-500">Buku</p>
+            </div>
+        </div>
+        <div class="text-center">
+            <a href="#" class="inline-block bg-orange-500 hover:bg-orange-600 text-white font-semibold py-3 px-8 rounded-lg shadow-md transition duration-300">Lihat Semua Publikasi</a>
+        </div>
+    </div>
+</section>
+
+{# Bagian Wawasan Terkini #}
+<section class="py-16">
+    <div class="container mx-auto px-4">
+        <h2 class="text-orange-500 text-sm font-semibold uppercase text-center mb-2">Wawasan Terkini</h2>
+        <h3 class="text-4xl font-bold text-gray-800 text-center mb-10">Wawasan Terkini</h3>
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {# Artikel Wawasan 1 #}
+            <div class="bg-white rounded-lg shadow-md p-6">
+                <h4 class="font-bold text-gray-800 mb-2">Peran Pentingnya Pajak dalam Perekonomian Global</h4>
+                <p class="text-sm text-gray-600 mb-4">Pajak adalah tulang punggung setiap perekonomian modern. Ini bukan hanya tentang mengumpulkan pendapatan untuk pemerintah...</p>
+                <a href="#" class="text-orange-500 hover:underline text-sm font-semibold">Baca Selengkapnya &rarr;</a>
+            </div>
+            {# Artikel Wawasan 2 #}
+            <div class="bg-white rounded-lg shadow-md p-6">
+                <h4 class="font-bold text-gray-800 mb-2">Reformasi Perpajakan dan Dampaknya bagi Pelaku Usaha</h4>
+                <p class="text-sm text-gray-600 mb-4">Pemerintah telah mengumumkan serangkaian reformasi perpajakan baru. Perubahan ini bertujuan untuk menyederhanakan sistem...</p>
+                <a href="#" class="text-orange-500 hover:underline text-sm font-semibold">Baca Selengkapnya &rarr;</a>
+            </div>
+            {# Artikel Wawasan 3 #}
+            <div class="bg-white rounded-lg shadow-md p-6">
+                <h4 class="font-bold text-gray-800 mb-2">Implikasi Pajak atas Transaksi Digital dan Ekonomi Gig</h4>
+                <p class="text-sm text-gray-600 mb-4">Ekonomi digital dan 'gig economy' terus berkembang pesat, menghadirkan tantangan unik bagi kerangka perpajakan tradisional...</p>
+                <a href="#" class="text-orange-500 hover:underline text-sm font-semibold">Baca Selengkapnya &rarr;</a>
+            </div>
+        </div>
+        <div class="text-center mt-8">
+            <a href="#" class="inline-block bg-orange-500 hover:bg-orange-600 text-white font-semibold py-3 px-8 rounded-lg shadow-md transition duration-300">Lihat Semua Wawasan</a>
+        </div>
+    </div>
+</section>
+
+{# Formulir Kolaborasi (dipindahkan ke bawah) #}
+<section class="bg-gray-100 py-20 text-center">
+    <div class="container mx-auto px-4">
+        <h1 class="text-5xl font-bold text-gray-800 mb-4">Mari Berkolaborasi Bersama Kami</h1>
+        <p class="text-xl text-gray-600 max-w-2xl mx-auto mb-8">
+            Untuk mengetahui informasi tentang topik tertentu atau tentang DDTC, Anda dapat mengirimkan pesan dengan mengisi formulir ini. Kami menghargai komentar dan masukan Anda, namun kami menyarankan untuk tidak menyertakan informasi bersifat rahasia.
+        </p>
+        {# Formulir Kolaborasi #}
+        <div class="max-w-4xl mx-auto p-8 bg-white rounded-lg shadow-lg text-left grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
+                <label for="email" class="block text-gray-700 text-sm font-bold mb-2">Email Anda</label>
+                <input type="email" id="email" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="email@example.com">
+            </div>
+            <div>
+                <label for="phone" class="block text-gray-700 text-sm font-bold mb-2">Nomor Ponsel Anda</label>
+                <input type="tel" id="phone" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="+62 8XX XXXX XXXX">
+            </div>
+            <div class="md:col-span-2">
+                <label for="reason" class="block text-gray-700 text-sm font-bold mb-2">Alasan untuk menghubungi</label>
+                <select id="reason" class="shadow border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                    <option value="">Pilih alasan...</option>
+                    <option value="konsultasi">Konsultasi Pajak</option>
+                    <option value="informasi">Informasi Umum</option>
+                    <option value="lainnya">Lainnya</option>
+                </select>
+            </div>
+            <div class="md:col-span-2">
+                <label for="message" class="block text-gray-700 text-sm font-bold mb-2">Bagaimana kami dapat membantu Anda?</label>
+                <textarea id="message" rows="4" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Ketik pesan Anda di sini..."></textarea>
+            </div>
+            <div class="md:col-span-2 text-right">
+                <button type="submit" class="bg-orange-500 hover:bg-orange-700 text-white font-bold py-2 px-6 rounded-lg focus:outline-none focus:shadow-outline transition duration-300">
+                    Kirim Formulir
+                </button>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock content %}

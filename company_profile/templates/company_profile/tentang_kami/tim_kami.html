@@ -1,0 +1,104 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block title %}{% trans "Tim Kami" %} - Emydn Pajak{% endblock title %}
+
+{% block content %}
+    {# Bagian Breadcrumb #}
+    <section class="bg-gray-100 py-4">
+        <div class="container mx-auto px-4">
+            <nav class="text-sm text-gray-600">
+                <a href="{% url 'home' %}" class="hover:underline">{% trans "Beranda" %}</a>
+                <span class="mx-2">&rarr;</span>
+                <a href="#" class="hover:underline">{% trans "Tentang Kami" %}</a>
+                <span class="mx-2">&rarr;</span>
+                <span class="font-semibold text-orange-500">{% trans "Tim Kami" %}</span>
+            </nav>
+        </div>
+    </section>
+
+    {# Bagian Header #}
+    <section class="bg-gray-800 py-16 text-white text-center">
+        <div class="container mx-auto px-4">
+            <h1 class="text-3xl font-bold mb-4">{% trans "Pengajar, serta Salah Satu Penulis Paling Produktif di Indonesia" %}</h1>
+            <p class="text-xl">{% trans "Kami adalah tim ahli yang berdedikasi untuk memberikan layanan perpajakan terbaik." %}</p>
+        </div>
+    </section>
+
+    {# Bagian Para Pendiri #}
+    <section class="py-12 bg-white">
+        <div class="container mx-auto px-4 grid grid-cols-1 md:grid-cols-2 gap-8">
+            {# Blok Para Pendiri #}
+            <div class="bg-gray-50 rounded-lg shadow-md p-8">
+                <h2 class="text-xl font-semibold text-gray-800 mb-4">{% trans "Para Pendiri" %}</h2>
+                <p class="text-gray-700 mb-6">
+                    {% trans "Didirikan oleh para visioner dengan pengalaman mendalam di bidang perpajakan dan bisnis, Emydn Pajak memiliki komitmen untuk memberikan solusi inovatif dan terpercaya bagi klien kami." %}
+                </p>
+                {# Anda bisa menambahkan gambar atau detail pendiri di sini jika ada #}
+            </div>
+
+            {# Blok Darussalam #}
+            <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                <div class="relative">
+                    {# Gunakan gambar yang relevan dari folder static Anda #}
+                    <img src="{% static 'img/darussalam.jpg' %}" alt="Darussalam" class="w-full h-auto">
+                    <div class="absolute bottom-0 left-0 right-0 bg-gray-900 bg-opacity-75 text-white py-2 px-4">
+                        <h3 class="text-lg font-semibold">Darussalam</h3>
+                        <p class="text-sm">{% trans "Pendiri & Partner" %}</p>
+                        <a href="#" class="text-orange-500 hover:underline text-sm">{% trans "Lihat Profil" %}</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    {# Bagian Anggota Tim #}
+    <section class="py-12 bg-gray-100">
+        <div class="container mx-auto px-4">
+            <h2 class="text-2xl font-bold text-gray-800 mb-8 text-center">{% trans "Tim Profesional Kami" %}</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                {# Contoh Kartu Anggota Tim #}
+                <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                    {# Ganti dengan gambar anggota tim yang sesuai #}
+                    <img src="{% static 'img/danny_septriadi.jpg' %}" alt="Danny Septriadi" class="w-full h-48 object-cover">
+                    <div class="p-4">
+                        <h3 class="text-lg font-semibold text-gray-800 mb-2">Danny Septriadi</h3>
+                        <p class="text-sm text-gray-600 mb-2">{% trans "Senior Konsultan Pajak" %}</p>
+                        <p class="text-gray-700 text-sm">{% trans "Memiliki pengalaman lebih dari 10 tahun di bidang perpajakan dan konsultasi, dengan spesialisasi dalam restrukturisasi pajak dan transfer pricing." %}</p>
+                        <a href="#" class="text-orange-500 hover:underline text-sm mt-2 block">{% trans "Lihat Profil" %}</a>
+                    </div>
+                </div>
+                {# Tambahkan kartu anggota tim lainnya di sini, duplikat blok di atas dan ganti informasi serta gambar #}
+                <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                    <img src="{% static 'img/person_placeholder_2.jpg' %}" alt="Nama Anggota Lain" class="w-full h-48 object-cover">
+                    <div class="p-4">
+                        <h3 class="text-lg font-semibold text-gray-800 mb-2">Nama Anggota Lain</h3>
+                        <p class="text-sm text-gray-600 mb-2">{% trans "Jabatan Anggota" %}</p>
+                        <p class="text-gray-700 text-sm">{% trans "Deskripsi singkat mengenai anggota tim ini. Fokus pada keahlian dan kontribusi mereka." %}</p>
+                        <a href="#" class="text-orange-500 hover:underline text-sm mt-2 block">{% trans "Lihat Profil" %}</a>
+                    </div>
+                </div>
+                <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                    <img src="{% static 'img/person_placeholder_3.jpg' %}" alt="Anggota Ketiga" class="w-full h-48 object-cover">
+                    <div class="p-4">
+                        <h3 class="text-lg font-semibold text-gray-800 mb-2">Anggota Ketiga</h3>
+                        <p class="text-sm text-gray-600 mb-2">{% trans "Posisi Anggota" %}</p>
+                        <p class="text-gray-700 text-sm">{% trans "Informasi tambahan tentang anggota ini, termasuk spesialisasi atau proyek penting yang telah dikerjakan." %}</p>
+                        <a href="#" class="text-orange-500 hover:underline text-sm mt-2 block">{% trans "Lihat Profil" %}</a>
+                    </div>
+                </div>
+                {# Anda bisa menambahkan lebih banyak anggota tim sesuai kebutuhan #}
+            </div>
+        </div>
+    </section>
+
+    {# Bagian Footer dengan logo DDTC (jika ada di screenshot) #}
+    <div class="py-12 bg-white text-center">
+        <div class="container mx-auto px-4">
+            {# Ganti dengan path logo DDTC yang benar di folder static Anda #}
+            <img src="{% static 'img/ddtc_logo_orange.png' %}" alt="DDTC Logo" class="h-12 mx-auto opacity-50">
+            <p class="text-gray-600 mt-4 text-sm">{% trans "Bagian dari jaringan DDTC." %}</p>
+        </div>
+    </div>
+{% endblock content %}

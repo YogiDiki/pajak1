@@ -1,0 +1,196 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% load static %}
+
+{% block title %}{% trans "Karir" %} - Nama Perusahaan Anda{% endblock %}
+
+{% block content %}
+<main>
+    <section class="bg-gray-800 text-white py-20">
+        <div class="container mx-auto px-4 text-center">
+            <h1 class="text-4xl md:text-5xl font-bold leading-tight">{% trans "Kini Saatnya Anda Melampaui Batas" %} <br> {% trans "dan Menetapkan Standar Baru" %}</h1>
+        </div>
+    </section>
+
+    <section class="py-16">
+        <div class="container mx-auto px-4 flex flex-col md:flex-row items-center gap-8">
+            <div class="md:w-1/2">
+                <img src="{% static 'img/internship_image.jpg' %}" alt="Internship Image" class="w-full h-auto rounded-lg shadow-lg">
+            </div>
+            <div class="md:w-1/2">
+                <h2 class="text-3xl font-bold text-gray-800 mb-4">{% trans "Memulai Karier Anda di Sini" %}</h2>
+                <p class="text-gray-700 mb-4">{% trans "Di DDTC, kami percaya bahwa karier yang hebat dimulai dengan fondasi yang kuat. Oleh karena itu, kami menawarkan **Executive Internship Program** yang dirancang untuk membekali mahasiswa dan mahasiswa universitas dari lulusan baru agar memiliki latar belakang perpajakan, ekonomi, atau akuntansi." %}</p>
+                <p class="text-gray-700 mb-4">{% trans "Program magang kami menyediakan lingkungan yang sempurna bagi Anda untuk belajar, berkembang, dan berkontribusi secara signifikan pada solusi perpajakan terdepan. Anda akan merasakan pengalaman langsung di dunia konsultasi pajak sambil menjunjung tinggi integritas dan profesionalisme. Selama program berlangsung dengan durasi 3 hingga 6 bulan, Anda akan menerima tantangan harian di atas rata-rata serta akses ke budaya belajar yang kolaboratif." %}</p>
+                <p class="text-gray-700">{% trans "Jika Anda bersemangat untuk belajar dan ingin berkembang dalam lingkungan yang mendukung dan profesional, kirimkan CV, transkrip akademik, dan surat referensi Anda yang telah diperbarui (jika ada) ke **recruitment@ddtc.co.id** dengan subjek: **APPLICATION FOR INTERNSHIP**. Anda tengah memulai langkah karier yang memuaskan bersama kami." %}</p>
+                <p class="text-gray-700 mt-4">{% trans "Persiapkan Anda dimulai di sini." %}</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-16 bg-gray-100">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-gray-800 mb-8 text-center">{% trans "Mengapa DDTC Berbeda" %}</h2>
+            <div class="flex flex-col md:flex-row items-start md:space-x-8">
+                <div class="md:w-1/3 mb-8 md:mb-0 text-center md:text-left">
+                    <img src="{% static 'img/ddtc_benefit_image.jpg' %}" alt="DDTC Benefits" class="mx-auto md:mx-0 w-full h-auto rounded-lg shadow-lg">
+                </div>
+                <div class="md:w-2/3">
+                    <p class="text-gray-700 mb-6">{% trans "Kami menyadari bahwa pertumbuhan Anda tidak hanya tentang apa yang Anda lakukan, tetapi juga tentang bagaimana kami berinvestasi dalam diri Anda. Itulah mengapa kami menawarkan berbagai manfaat yang komprehensif untuk mendukung kehidupan pribadi dan profesional Anda." %}</p>
+                    
+                    <div class="space-y-4">
+                        <div x-data="{ open: false }" class="bg-white p-4 rounded-lg shadow">
+                            <h3 class="flex justify-between items-center text-xl font-semibold text-gray-800 cursor-pointer" @click="open = !open">
+                                {% trans "Bonus Kinerja" %}
+                                <svg class="w-5 h-5 transition-transform duration-200" :class="{ 'rotate-180': open }" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                            </h3>
+                            <div x-show="open" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 transform -translate-y-2" x-transition:enter-end="opacity-100 transform translate-y-0" x-transition:leave="transition ease-in duration-200" x-transition:leave-start="opacity-100 transform translate-y-0" x-transition:leave-end="opacity-0 transform -translate-y-2" class="mt-2 text-gray-600">
+                                <p>{% trans "Bentuk apresiasi Kami terhadap Pegawai salah satunya adalah performance bonus yang diberikan kepada Pegawai yang telah menunjukkan prestasinya atas penyampaian ide kreatif dan inovatif serta implementasinya." %}</p>
+                            </div>
+                        </div>
+                        <div x-data="{ open: false }" class="bg-white p-4 rounded-lg shadow">
+                            <h3 class="flex justify-between items-center text-xl font-semibold text-gray-800 cursor-pointer" @click="open = !open">
+                                {% trans "Reimbursement Medis & Asuransi Kesehatan" %}
+                                <svg class="w-5 h-5 transition-transform duration-200" :class="{ 'rotate-180': open }" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                            </h3>
+                            <div x-show="open" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 transform -translate-y-2" x-transition:enter-end="opacity-100 transform translate-y-0" x-transition:leave="transition ease-in duration-200" x-transition:leave-start="opacity-100 transform translate-y-0" x-transition:leave-end="opacity-0 transform -translate-y-2" class="mt-2 text-gray-600">
+                                <p>{% trans "Detail tentang reimbursement medis dan asuransi kesehatan." %}</p>
+                            </div>
+                        </div>
+                        <div x-data="{ open: false }" class="bg-white p-4 rounded-lg shadow">
+                            <h3 class="flex justify-between items-center text-xl font-semibold text-gray-800 cursor-pointer" @click="open = !open">
+                                {% trans "Dana Pensiun" %}
+                                <svg class="w-5 h-5 transition-transform duration-200" :class="{ 'rotate-180': open }" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                            </h3>
+                            <div x-show="open" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 transform -translate-y-2" x-transition:enter-end="opacity-100 transform translate-y-0" x-transition:leave="transition ease-in duration-200" x-transition:leave-start="opacity-100 transform translate-y-0" x-transition:leave-end="opacity-0 transform -translate-y-2" class="mt-2 text-gray-600">
+                                <p>{% trans "Detail tentang dana pensiun." %}</p>
+                            </div>
+                        </div>
+                        <div x-data="{ open: false }" class="bg-white p-4 rounded-lg shadow">
+                            <h3 class="flex justify-between items-center text-xl font-semibold text-gray-800 cursor-pointer" @click="open = !open">
+                                {% trans "Program Pengembangan Sumber Daya Manusia" %}
+                                <svg class="w-5 h-5 transition-transform duration-200" :class="{ 'rotate-180': open }" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                            </h3>
+                            <div x-show="open" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 transform -translate-y-2" x-transition:enter-end="opacity-100 transform translate-y-0" x-transition:leave="transition ease-in duration-200" x-transition:leave-start="opacity-100 transform translate-y-0" x-transition:leave-end="opacity-0 transform -translate-y-2" class="mt-2 text-gray-600">
+                                <p>{% trans "Detail tentang program pengembangan sumber daya manusia." %}</p>
+                            </div>
+                        </div>
+                        <div x-data="{ open: false }" class="bg-white p-4 rounded-lg shadow">
+                            <h3 class="flex justify-between items-center text-xl font-semibold text-gray-800 cursor-pointer" @click="open = !open">
+                                {% trans "Perlengkapan Kantor" %}
+                                <svg class="w-5 h-5 transition-transform duration-200" :class="{ 'rotate-180': open }" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                            </h3>
+                            <div x-show="open" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 transform -translate-y-2" x-transition:enter-end="opacity-100 transform translate-y-0" x-transition:leave="transition ease-in duration-200" x-transition:leave-start="opacity-100 transform translate-y-0" x-transition:leave-end="opacity-0 transform -translate-y-2" class="mt-2 text-gray-600">
+                                <p>{% trans "Detail tentang perlengkapan kantor." %}</p>
+                            </div>
+                        </div>
+                        <div x-data="{ open: false }" class="bg-white p-4 rounded-lg shadow">
+                            <h3 class="flex justify-between items-center text-xl font-semibold text-gray-800 cursor-pointer" @click="open = !open">
+                                {% trans "Cuti Khusus" %}
+                                <svg class="w-5 h-5 transition-transform duration-200" :class="{ 'rotate-180': open }" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                            </h3>
+                            <div x-show="open" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 transform -translate-y-2" x-transition:enter-end="opacity-100 transform translate-y-0" x-transition:leave="transition ease-in duration-200" x-transition:leave-start="opacity-100 transform translate-y-0" x-transition:leave-end="opacity-0 transform -translate-y-2" class="mt-2 text-gray-600">
+                                <p>{% trans "Detail tentang cuti khusus." %}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-gray-800 mb-8 text-center">{% trans "Lowongan Terbaru" %}</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6">
+                <div class="bg-white p-6 rounded-lg shadow-md border-t-4 border-orange-500">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-2">{% trans "Data Entry Specialist" %}</h3>
+                    <p class="text-gray-600">{% trans "Dibuka 2 hari lalu" %}</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md border-t-4 border-orange-500">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-2">{% trans "DDTC Consulting Intern" %}</h3>
+                    <p class="text-gray-600">{% trans "Dibuka 2 hari lalu" %}</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md border-t-4 border-orange-500">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-2">{% trans "Fiscal Research & Advisory Intern" %}</h3>
+                    <p class="text-gray-600">{% trans "Dibuka 2 hari lalu" %}</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md border-t-4 border-orange-500">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-2">{% trans "Project & Library Administration" %}</h3>
+                    <p class="text-gray-600">{% trans "Dibuka 2 hari lalu" %}</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-16">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-3xl font-bold text-gray-800 mb-8">{% trans "Apa Kata Peserta Magang" %}</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="bg-white p-6 rounded-lg shadow-md flex flex-col items-center text-center">
+                    <p class="text-5xl text-gray-400 mb-4">“</p>
+                    <p class="text-gray-700 mb-4 italic">{% trans "Semasa menjalani program magang di DDTC, banyak sekali hal-hal baru yang saya pelajari, terutama mengenai perkembangan pajak di Indonesia dan global. Saya juga merasakan bagaimana sebuah konsultan pajak yang komprehensif bekerja, mulai dari riset, konsultasi, hingga litigasi. Saya sangat senang dan bangga bisa menjadi bagian dari tim yang profesional dan suportif ini." %}</p>
+                    <div class="flex items-center mt-4">
+                        <img src="{% static 'img/testimoni_tazkia.jpg' %}" alt="Tazkia Putri Alisyah" class="w-16 h-16 rounded-full mr-4 object-cover">
+                        <div>
+                            <p class="font-semibold text-gray-800">{% trans "Tazkia Putri Alisyah" %}</p>
+                            <p class="text-sm text-gray-500">{% trans "Intern DDTC Consulting" %}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md flex flex-col items-center text-center">
+                    <p class="text-5xl text-gray-400 mb-4">“</p>
+                    <p class="text-gray-700 mb-4 italic">{% trans "My internship experience at DDTC has been incredibly enriching. I gained hands-on experience in various tax cases, enhancing my understanding of tax laws and their practical application. The supportive environment and guidance from mentors truly helped me grow professionally." %}</p>
+                    <div class="flex items-center mt-4">
+                        <img src="{% static 'img/testimoni_dayana.jpg' %}" alt="Dayana Pratama Bulan" class="w-16 h-16 rounded-full mr-4 object-cover">
+                        <div>
+                            <p class="font-semibold text-gray-800">{% trans "Dayana Pratama Bulan" %}</p>
+                            <p class="text-sm text-gray-500">{% trans "Intern DDTC Research" %}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-3xl font-bold text-gray-800 mb-8">{% trans "Mendefinisikan Ulang Budaya Kerja" %}</h2>
+            <p class="text-lg text-gray-700 mb-8">{% trans "Lihat sekilas bagaimana rasanya bekerja di DDTC. Kami membangun budaya yang mendorong kolaborasi, inovasi, dan pertumbuhan." %}</p>
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                <div>
+                    <img src="{% static 'img/gallery_1.jpg' %}" alt="DDTC Culture 1" class="w-full h-auto rounded-lg shadow-md object-cover">
+                </div>
+                <div>
+                    <img src="{% static 'img/gallery_2.jpg' %}" alt="DDTC Culture 2" class="w-full h-auto rounded-lg shadow-md object-cover">
+                </div>
+                <div>
+                    <img src="{% static 'img/gallery_3.jpg' %}" alt="DDTC Culture 3" class="w-full h-auto rounded-lg shadow-md object-cover">
+                </div>
+                <div>
+                    <img src="{% static 'img/gallery_4.jpg' %}" alt="DDTC Culture 4" class="w-full h-auto rounded-lg shadow-md object-cover">
+                </div>
+                </div>
+            </div>
+    </section>
+
+    <section class="py-16">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-3xl font-bold text-gray-800 mb-8">{% trans "Bagaimana Kami Mengaplikasikan Prinsip yang Membuat Kita Maju ke Depan" %}</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="p-6 bg-white rounded-lg shadow-md">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-2">{% trans "Memberikan Dampak" %}</h3>
+                    <p class="text-gray-600">{% trans "Pekerjaan Anda akan berkontribusi dalam membentuk industri perpajakan di Indonesia dan luar negeri, membantu bisnis dan pemerintah mencapai tujuan mereka." %}</p>
+                </div>
+                <div class="p-6 bg-white rounded-lg shadow-md">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-2">{% trans "Berkembang Bersama Kami" %}</h3>
+                    <p class="text-gray-600">{% trans "Dengan pelatihan berkelanjutan, program mentorship, dan sertifikasi, kami berinvestasi dalam pertumbuhan profesional dan pribadi Anda." %}</p>
+                </div>
+                <div class="p-6 bg-white rounded-lg shadow-md">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-2">{% trans "Budaya yang Mendukung" %}</h3>
+                    <p class="text-gray-600">{% trans "Kolaborasi, rasa hormat, dan inklusivitas adalah inti dari budaya kami. Kami menciptakan lingkungan di mana setiap orang merasa dihargai." %}</p>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+{% endblock %}

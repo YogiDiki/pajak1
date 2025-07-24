@@ -1,0 +1,156 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block title %}Tentang Kami - Nilai Kami - Emydn Pajak{% endblock title %}
+
+{% block content %}
+
+{# Breadcrumb / Navigasi Jalur #}
+<section class="bg-gray-100 py-4">
+    <div class="container mx-auto px-4">
+        <nav class="text-sm text-gray-600">
+            <a href="{% url 'home' %}" class="hover:underline">{% trans "Beranda" %}</a>
+            <span class="mx-2">&rarr;</span>
+            <a href="#" class="hover:underline">{% trans "Tentang Kami" %}</a> {# Ini bisa jadi link ke halaman about umum jika ada #}
+            <span class="mx-2">&rarr;</span>
+            <span class="font-semibold text-orange-500">{% trans "Nilai Kami" %}</span>
+        </nav>
+    </div>
+</section>
+
+{# Bagian Hero / Judul Halaman "Nilai-Nilai yang Kami Yakini" #}
+<section class="bg-gray-700 text-white py-16 px-4">
+    <div class="container mx-auto">
+        <h1 class="text-base font-semibold uppercase mb-2">{% trans "Nilai-Nilai Kami" %}</h1>
+        <p class="text-4xl md:text-5xl font-bold">{% trans "Nilai-Nilai yang Kami Yakini" %}</p>
+    </div>
+</section>
+
+{# Bagian Visi #}
+<section class="bg-orange-500 text-white py-16 text-center">
+    <div class="container mx-auto px-4">
+        <h2 class="text-5xl font-extrabold mb-4">{% trans "Visi" %}</h2>
+        <p class="text-2xl font-light max-w-4xl mx-auto">
+            {% trans "Konsultan Pajak Berbasis Riset, Teknologi, dan Ilmu Pengetahuan yang Menetapkan Standar Tinggi dan Berkelanjutan" %}
+        </p>
+    </div>
+</section>
+
+{# Bagian Misi #}
+<section class="py-16">
+    <div class="container mx-auto px-4">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
+            <div>
+                <h2 class="text-orange-500 text-sm font-semibold uppercase mb-2">{% trans "Misi Kami" %}</h2>
+                <h3 class="text-4xl font-bold text-gray-800 mb-6">{% trans "Misi" %}</h3>
+                <ul class="space-y-4 text-gray-700 leading-relaxed text-lg">
+                    <li>
+                        <span class="font-bold text-orange-500">&bull;</span> {% trans "Memberikan layanan perpajakan berkualitas tinggi dan komprehensif yang melampaui ekspektasi klien." %}
+                    </li>
+                    <li>
+                        <span class="font-bold text-orange-500">&bull;</span> {% trans "Berkomitmen pada inovasi berkelanjutan untuk mencapai keunggulan kompetitif." %}
+                    </li>
+                    <li>
+                        <span class="font-bold text-orange-500">&bull;</span> {% trans "Mempengaruhi dan berkontribusi dalam proses pembuatan kebijakan perpajakan guna memastikan transformasi sistem pajak yang seimbang dan melayani semua pemangku kepentingan." %}
+                    </li>
+                    <li>
+                        <span class="font-bold text-orange-500">&bull;</span> {% trans "Menghilangkan asimetri informasi dalam masyarakat perpajakan Indonesia." %}
+                    </li>
+                    <li>
+                        <span class="font-bold text-orange-500">&bull;</span> {% trans "Mengembangkan sumber daya manusia kami melalui pendidikan berkelanjutan, menciptakan lingkungan kerja yang kondusif dan etis." %}
+                    </li>
+                </ul>
+            </div>
+            {# Gambar tim "WE ARE DDTC" #}
+            <div>
+                 <img src="{% static 'img/we_are_ddtc_team.jpg' %}" alt="WE ARE DDTC Team Image" class="w-full h-auto rounded-lg shadow-lg">
+            </div>
+        </div>
+    </div>
+</section>
+
+{# Bagian Nilai Inti (Grid dengan Tulisan W E R E D D T C) #}
+<section class="bg-gray-50 py-16">
+    <div class="container mx-auto px-4">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            {# Kolom Kiri: Judul dan Deskripsi #}
+            <div class="pr-8">
+                <h2 class="text-4xl md:text-5xl font-bold text-gray-800 mb-6">{% trans "Nilai Inti" %}</h2>
+                <p class="text-gray-700 leading-relaxed text-lg">
+                    {% trans "Nilai-nilai inilah yang menjadi pembeda sekaligus panduan dalam setiap keputusan yang kami ambil setiap hari" %}
+                </p>
+                {# Tambahkan lebih banyak teks jika ada di screenshot yang tidak terlihat #}
+            </div>
+
+            {# Kolom Kanan: Grid WEREDDTC #}
+            <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+                {# Contoh Nilai Inti 1: Winning Mentality (W) #}
+                <div class="relative bg-white rounded-lg shadow-md flex flex-col items-center justify-center p-4 overflow-hidden min-h-[180px]">
+                    <img src="{% static 'img/w_placeholder.jpg' %}" alt="Winning Mentality" class="absolute inset-0 w-full h-full object-cover opacity-20">
+                    <div class="relative z-10 text-center">
+                        <h4 class="text-6xl font-extrabold text-orange-400 mb-2">W</h4>
+                        <h5 class="text-xl font-bold text-gray-800">{% trans "Winning Mentality" %}</h5>
+                        <p class="text-gray-600 text-sm mt-1">{% trans "Deskripsi singkat Winning Mentality." %}</p>
+                    </div>
+                </div>
+                {# Contoh Nilai Inti 2: Execution (E) #}
+                <div class="relative bg-white rounded-lg shadow-md flex flex-col items-center justify-center p-4 overflow-hidden min-h-[180px]">
+                    <img src="{% static 'img/e_placeholder.jpg' %}" alt="Execution" class="absolute inset-0 w-full h-full object-cover opacity-20">
+                    <div class="relative z-10 text-center">
+                        <h4 class="text-6xl font-extrabold text-orange-400 mb-2">E</h4>
+                        <h5 class="text-xl font-bold text-gray-800">{% trans "Execution" %}</h5>
+                        <p class="text-gray-600 text-sm mt-1">{% trans "Deskripsi singkat Execution." %}</p>
+                    </div>
+                </div>
+                {# Contoh Nilai Inti 3: Research (R) #}
+                <div class="relative bg-white rounded-lg shadow-md flex flex-col items-center justify-center p-4 overflow-hidden min-h-[180px]">
+                    <img src="{% static 'img/r_placeholder.jpg' %}" alt="Research" class="absolute inset-0 w-full h-full object-cover opacity-20">
+                    <div class="relative z-10 text-center">
+                        <h4 class="text-6xl font-extrabold text-orange-400 mb-2">R</h4>
+                        <h5 class="text-xl font-bold text-gray-800">{% trans "Research" %}</h5>
+                        <p class="text-gray-600 text-sm mt-1">{% trans "Deskripsi singkat Research." %}</p>
+                    </div>
+                </div>
+                {# Contoh Nilai Inti 4: Ethics (E) #}
+                <div class="relative bg-white rounded-lg shadow-md flex flex-col items-center justify-center p-4 overflow-hidden min-h-[180px]">
+                    <img src="{% static 'img/e2_placeholder.jpg' %}" alt="Ethics" class="absolute inset-0 w-full h-full object-cover opacity-20">
+                    <div class="relative z-10 text-center">
+                        <h4 class="text-6xl font-extrabold text-orange-400 mb-2">E</h4>
+                        <h5 class="text-xl font-bold text-gray-800">{% trans "Ethics" %}</h5>
+                        <p class="text-gray-600 text-sm mt-1">{% trans "Deskripsi singkat Ethics." %}</p>
+                    </div>
+                </div>
+                {# Contoh Nilai Inti 5: Dynamics (D) #}
+                <div class="relative bg-white rounded-lg shadow-md flex flex-col items-center justify-center p-4 overflow-hidden min-h-[180px]">
+                    <img src="{% static 'img/d_placeholder.jpg' %}" alt="Dynamics" class="absolute inset-0 w-full h-full object-cover opacity-20">
+                    <div class="relative z-10 text-center">
+                        <h4 class="text-6xl font-extrabold text-orange-400 mb-2">D</h4>
+                        <h5 class="text-xl font-bold text-gray-800">{% trans "Dynamics" %}</h5>
+                        <p class="text-gray-600 text-sm mt-1">{% trans "Deskripsi singkat Dynamics." %}</p>
+                    </div>
+                </div>
+                {# Contoh Nilai Inti 6: Trust (T) #}
+                <div class="relative bg-white rounded-lg shadow-md flex flex-col items-center justify-center p-4 overflow-hidden min-h-[180px]">
+                    <img src="{% static 'img/t_placeholder.jpg' %}" alt="Trust" class="absolute inset-0 w-full h-full object-cover opacity-20">
+                    <div class="relative z-10 text-center">
+                        <h4 class="text-6xl font-extrabold text-orange-400 mb-2">T</h4>
+                        <h5 class="text-xl font-bold text-gray-800">{% trans "Trust" %}</h5>
+                        <p class="text-gray-600 text-sm mt-1">{% trans "Deskripsi singkat Trust." %}</p>
+                    </div>
+                </div>
+                {# Contoh Nilai Inti 7: Commitment (C) #}
+                <div class="relative bg-white rounded-lg shadow-md flex flex-col items-center justify-center p-4 overflow-hidden min-h-[180px]">
+                    <img src="{% static 'img/c_placeholder.jpg' %}" alt="Commitment" class="absolute inset-0 w-full h-full object-cover opacity-20">
+                    <div class="relative z-10 text-center">
+                        <h4 class="text-6xl font-extrabold text-orange-400 mb-2">C</h4>
+                        <h5 class="text-xl font-bold text-gray-800">{% trans "Commitment" %}</h5>
+                        <p class="text-gray-600 text-sm mt-1">{% trans "Deskripsi singkat Commitment." %}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock content %}
