@@ -4,7 +4,7 @@ import { BrowserRouter } from 'react-router-dom'
 import { QueryClient, QueryClientProvider } from 'react-query'
 import { HelmetProvider } from 'react-helmet-async'
 import { Toaster } from 'react-hot-toast'
-import App from './App.tsx'
+import App from './App'
 import { AuthProvider } from './contexts/AuthContext'
 import './index.css'
 
