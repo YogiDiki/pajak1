@@ -1,0 +1,92 @@
+version: '3.8'
+
+services:
+  # PostgreSQL Database
+  postgres:
+    image: postgres:15-alpine
+    container_name: taxonomy_hub_db
+    environment:
+      POSTGRES_DB: taxonomy_hub
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    networks:
+      - taxonomy_network
+
+  # Redis Cache
+  redis:
+    image: redis:7-alpine
+    container_name: taxonomy_hub_redis
+    ports:
+      - "6379:6379"
+    networks:
+      - taxonomy_network
+
+  # Backend API
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: taxonomy_hub_backend
+    environment:
+      - ENVIRONMENT=production
+      - DATABASE_URL=postgres://postgres:password@postgres:5432/taxonomy_hub?sslmode=disable
+      - REDIS_URL=redis:6379
+      - JWT_SECRET=your-production-secret-key-change-this
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - NEWS_API_KEY=${NEWS_API_KEY}
+      - SUPABASE_URL=${SUPABASE_URL}
+      - SUPABASE_KEY=${SUPABASE_KEY}
+      - GOOGLE_ANALYTICS_ID=${GOOGLE_ANALYTICS_ID}
+      - ALLOWED_ORIGINS=http://localhost:3000,https://taxonomyhub.com
+    ports:
+      - "8080:8080"
+    depends_on:
+      - postgres
+      - redis
+    networks:
+      - taxonomy_network
+    volumes:
+      - ./uploads:/app/uploads
+
+  # Frontend
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: taxonomy_hub_frontend
+    environment:
+      - VITE_API_URL=http://localhost:8080/api
+      - VITE_APP_NAME=Taxonomy Knowledge Hub
+    ports:
+      - "3000:80"
+    depends_on:
+      - backend
+    networks:
+      - taxonomy_network
+
+  # Nginx Reverse Proxy
+  nginx:
+    image: nginx:alpine
+    container_name: taxonomy_hub_nginx
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+      - ./nginx/ssl:/etc/nginx/ssl
+    depends_on:
+      - frontend
+      - backend
+    networks:
+      - taxonomy_network
+
+volumes:
+  postgres_data:
+
+networks:
+  taxonomy_network:
+    driver: bridge 
