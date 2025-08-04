@@ -5,6 +5,7 @@ import path from 'path'
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
+  base: '',
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src'),
@@ -22,6 +23,14 @@ export default defineConfig({
   },
   build: {
     outDir: 'dist',
-    sourcemap: true,
+    sourcemap: false, // Disable sourcemaps for production
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          vendor: ['react', 'react-dom'],
+          router: ['react-router-dom'],
+        },
+      },
+    },
   },
 }) 

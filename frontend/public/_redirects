@@ -1,0 +1,11 @@
+# SPA fallback - redirect all routes to index.html
+/*    /index.html   200
+
+# Handle specific routes that might cause issues
+/news/*    /index.html   200
+/education/*    /index.html   200
+/about    /index.html   200
+/contact    /index.html   200
+/login    /index.html   200
+/register    /index.html   200
+/dashboard    /index.html   200 
