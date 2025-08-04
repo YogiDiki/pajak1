@@ -1,6 +1,7 @@
+import React from 'react'
 import { Helmet } from 'react-helmet-async'
 import { Link } from 'react-router-dom'
-import { ArrowRight, BookOpen, Newspaper, GraduationCap, TrendingUp, Users, Award, Globe } from 'lucide-react'
+import { ArrowRight, BookOpen, Newspaper, GraduationCap, TrendingUp, Users, Award, Globe, FileText, Video, Database, UserCheck, Settings } from 'lucide-react'
 
 const features = [
   {
@@ -176,6 +177,107 @@ export default function Home() {
                 </p>
               </Link>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* All Pages Navigation Section */}
+      <section className="py-20 bg-white">
+        <div className="container-custom">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+              Jelajahi Semua Halaman
+            </h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              Akses semua 18 halaman yang telah kami siapkan untuk Anda
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {/* Main Pages */}
+            <div className="card p-6">
+              <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center">
+                <Globe className="w-5 h-5 mr-2 text-primary-600" />
+                Halaman Utama
+              </h3>
+              <div className="space-y-2">
+                <Link to="/" className="block text-gray-600 hover:text-primary-600 transition-colors">🏠 Beranda</Link>
+                <Link to="/news" className="block text-gray-600 hover:text-primary-600 transition-colors">📰 Berita</Link>
+                <Link to="/education" className="block text-gray-600 hover:text-primary-600 transition-colors">📚 Edukasi</Link>
+                <Link to="/about" className="block text-gray-600 hover:text-primary-600 transition-colors">ℹ️ Tentang</Link>
+                <Link to="/contact" className="block text-gray-600 hover:text-primary-600 transition-colors">📞 Kontak</Link>
+                <Link to="/login" className="block text-gray-600 hover:text-primary-600 transition-colors">🔐 Login</Link>
+                <Link to="/register" className="block text-gray-600 hover:text-primary-600 transition-colors">📝 Register</Link>
+              </div>
+            </div>
+
+            {/* News Subpages */}
+            <div className="card p-6">
+              <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center">
+                <Newspaper className="w-5 h-5 mr-2 text-green-600" />
+                Berita Kategori
+              </h3>
+              <div className="space-y-2">
+                <Link to="/news/economy" className="block text-gray-600 hover:text-green-600 transition-colors">💰 Ekonomi</Link>
+                <Link to="/news/investment" className="block text-gray-600 hover:text-green-600 transition-colors">📈 Investasi</Link>
+                <Link to="/news/tax" className="block text-gray-600 hover:text-green-600 transition-colors">🏛️ Pajak</Link>
+                <Link to="/news/opinion" className="block text-gray-600 hover:text-green-600 transition-colors">💭 Opini</Link>
+              </div>
+            </div>
+
+            {/* Education Subpages */}
+            <div className="card p-6">
+              <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center">
+                <GraduationCap className="w-5 h-5 mr-2 text-blue-600" />
+                Edukasi
+              </h3>
+              <div className="space-y-2">
+                <Link to="/education/ebook" className="block text-gray-600 hover:text-blue-600 transition-colors">📖 E-Book</Link>
+                <Link to="/education/edoc" className="block text-gray-600 hover:text-blue-600 transition-colors">📄 E-Doc</Link>
+                <Link to="/education/elibrary" className="block text-gray-600 hover:text-blue-600 transition-colors">🏛️ E-Library</Link>
+              </div>
+            </div>
+
+            {/* Admin Pages */}
+            <div className="card p-6">
+              <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center">
+                <Settings className="w-5 h-5 mr-2 text-purple-600" />
+                Admin Panel
+              </h3>
+              <div className="space-y-2">
+                <Link to="/admin/news" className="block text-gray-600 hover:text-purple-600 transition-colors">📰 Kelola Berita</Link>
+                <Link to="/admin/education" className="block text-gray-600 hover:text-purple-600 transition-colors">📚 Kelola Edukasi</Link>
+                <Link to="/admin/helpdesk" className="block text-gray-600 hover:text-purple-600 transition-colors">🆘 Kelola Helpdesk</Link>
+                <Link to="/admin/users" className="block text-gray-600 hover:text-purple-600 transition-colors">👥 Kelola Pengguna</Link>
+              </div>
+            </div>
+
+            {/* Dashboard & Helpdesk */}
+            <div className="card p-6">
+              <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center">
+                <UserCheck className="w-5 h-5 mr-2 text-orange-600" />
+                User Area
+              </h3>
+              <div className="space-y-2">
+                <Link to="/dashboard" className="block text-gray-600 hover:text-orange-600 transition-colors">📊 Dashboard</Link>
+                <Link to="/helpdesk" className="block text-gray-600 hover:text-orange-600 transition-colors">🆘 Helpdesk</Link>
+                <Link to="/live-chat" className="block text-gray-600 hover:text-orange-600 transition-colors">💬 Live Chat</Link>
+              </div>
+            </div>
+
+            {/* Test Pages */}
+            <div className="card p-6">
+              <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center">
+                <Database className="w-5 h-5 mr-2 text-red-600" />
+                Test Pages
+              </h3>
+              <div className="space-y-2">
+                <Link to="/test" className="block text-gray-600 hover:text-red-600 transition-colors">🧪 Test Page</Link>
+                <Link to="/debug" className="block text-gray-600 hover:text-red-600 transition-colors">🐛 Debug Page</Link>
+                <Link to="/simple" className="block text-gray-600 hover:text-red-600 transition-colors">📱 Simple Layout</Link>
+                <Link to="/simple-test" className="block text-gray-600 hover:text-red-600 transition-colors">✅ Simple Test</Link>
+              </div>
+            </div>
           </div>
         </div>
       </section>

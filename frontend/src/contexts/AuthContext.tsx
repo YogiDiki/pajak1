@@ -1,110 +1,198 @@
-import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
-import { apiService, LoginRequest, RegisterRequest } from '../services/api';
+import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react'
 
-interface User {
-  id: number;
-  email: string;
-  name: string;
-  role: string;
+export interface User {
+  id: string
+  email: string
+  name: string
+  role: 'unregistered' | 'registered' | 'premium' | 'editor' | 'jurnalis' | 'admin'
+  permissions: string[]
+  isActive: boolean
+  createdAt: string
+  lastLogin: string
 }
 
 interface AuthContextType {
-  user: User | null;
-  token: string | null;
-  isLoading: boolean;
-  login: (data: LoginRequest) => Promise<void>;
-  register: (data: RegisterRequest) => Promise<void>;
-  logout: () => void;
-  isAuthenticated: boolean;
+  user: User | null
+  loading: boolean
+  login: (email: string, password: string) => Promise<void>
+  register: (email: string, password: string, name: string) => Promise<void>
+  logout: () => void
+  updateUser: (userData: Partial<User>) => void
+  hasPermission: (permission: string) => boolean
+  isPremium: () => boolean
+  isEditor: () => boolean
+  isAdmin: () => boolean
 }
 
-const AuthContext = createContext<AuthContextType | undefined>(undefined);
+const AuthContext = createContext<AuthContextType | undefined>(undefined)
 
 export const useAuth = () => {
-  const context = useContext(AuthContext);
+  const context = useContext(AuthContext)
   if (context === undefined) {
-    throw new Error('useAuth must be used within an AuthProvider');
+    throw new Error('useAuth must be used within an AuthProvider')
   }
-  return context;
-};
+  return context
+}
 
 interface AuthProviderProps {
-  children: ReactNode;
+  children: ReactNode
 }
 
 export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
-  const [user, setUser] = useState<User | null>(null);
-  const [token, setToken] = useState<string | null>(null);
-  const [isLoading, setIsLoading] = useState(true);
+  const [user, setUser] = useState<User | null>(null)
+  const [loading, setLoading] = useState(true)
 
-  // Check for existing token on mount
   useEffect(() => {
-    const savedToken = localStorage.getItem('authToken');
-    const savedUser = localStorage.getItem('user');
+    // Check for existing session
+    const token = localStorage.getItem('authToken')
+    const userData = localStorage.getItem('userData')
     
-    if (savedToken && savedUser) {
+    if (token && userData) {
       try {
-        setToken(savedToken);
-        setUser(JSON.parse(savedUser));
+        const parsedUser = JSON.parse(userData)
+        setUser(parsedUser)
       } catch (error) {
-        console.error('Error parsing saved user data:', error);
-        localStorage.removeItem('authToken');
-        localStorage.removeItem('user');
+        console.error('Error parsing user data:', error)
+        localStorage.removeItem('authToken')
+        localStorage.removeItem('userData')
       }
     }
     
-    setIsLoading(false);
-  }, []);
+    setLoading(false)
+  }, [])
 
-  const login = async (data: LoginRequest) => {
+  const login = async (email: string, password: string) => {
+    setLoading(true)
     try {
-      const response = await apiService.login(data);
-      
-      setToken(response.token);
-      setUser(response.user);
-      
-      localStorage.setItem('authToken', response.token);
-      localStorage.setItem('user', JSON.stringify(response.user));
-    } catch (error) {
-      throw error;
-    }
-  };
+      // Mock API call - replace with actual API
+      const response = await fetch('/api/auth/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email, password }),
+      })
 
-  const register = async (data: RegisterRequest) => {
-    try {
-      const response = await apiService.register(data);
+      if (!response.ok) {
+        throw new Error('Login failed')
+      }
+
+      const data = await response.json()
       
-      // Set token and user from register response
-      setToken(response.token);
-      setUser(response.user);
-      
-      localStorage.setItem('authToken', response.token);
-      localStorage.setItem('user', JSON.stringify(response.user));
+      // Mock user data for development
+      const mockUser: User = {
+        id: '1',
+        email: email,
+        name: 'Administrator',
+        role: 'admin',
+        permissions: ['read', 'write', 'delete', 'admin'],
+        isActive: true,
+        createdAt: new Date().toISOString(),
+        lastLogin: new Date().toISOString(),
+      }
+
+      setUser(mockUser)
+      localStorage.setItem('authToken', data.token || 'mock-token')
+      localStorage.setItem('userData', JSON.stringify(mockUser))
     } catch (error) {
-      throw error;
+      console.error('Login error:', error)
+      throw error
+    } finally {
+      setLoading(false)
     }
-  };
+  }
+
+  const register = async (email: string, password: string, name: string) => {
+    setLoading(true)
+    try {
+      // Mock API call - replace with actual API
+      const response = await fetch('/api/auth/register', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email, password, name }),
+      })
+
+      if (!response.ok) {
+        throw new Error('Registration failed')
+      }
+
+      const data = await response.json()
+      
+      // Mock user data for development
+      const mockUser: User = {
+        id: '1',
+        email: email,
+        name: name,
+        role: 'registered',
+        permissions: ['read'],
+        isActive: true,
+        createdAt: new Date().toISOString(),
+        lastLogin: new Date().toISOString(),
+      }
+
+      setUser(mockUser)
+      localStorage.setItem('authToken', data.token || 'mock-token')
+      localStorage.setItem('userData', JSON.stringify(mockUser))
+    } catch (error) {
+      console.error('Registration error:', error)
+      throw error
+    } finally {
+      setLoading(false)
+    }
+  }
 
   const logout = () => {
-    setToken(null);
-    setUser(null);
-    localStorage.removeItem('authToken');
-    localStorage.removeItem('user');
-  };
+    setUser(null)
+    localStorage.removeItem('authToken')
+    localStorage.removeItem('userData')
+  }
+
+  const updateUser = (userData: Partial<User>) => {
+    if (user) {
+      const updatedUser = { ...user, ...userData }
+      setUser(updatedUser)
+      localStorage.setItem('userData', JSON.stringify(updatedUser))
+    }
+  }
+
+  const hasPermission = (permission: string): boolean => {
+    if (!user) return false
+    return user.permissions.includes(permission) || user.role === 'admin'
+  }
+
+  const isPremium = (): boolean => {
+    if (!user) return false
+    return ['premium', 'editor', 'admin'].includes(user.role)
+  }
+
+  const isEditor = (): boolean => {
+    if (!user) return false
+    return ['editor', 'admin'].includes(user.role)
+  }
+
+  const isAdmin = (): boolean => {
+    if (!user) return false
+    return user.role === 'admin'
+  }
 
   const value: AuthContextType = {
     user,
-    token,
-    isLoading,
+    loading,
     login,
     register,
     logout,
-    isAuthenticated: !!token && !!user,
-  };
+    updateUser,
+    hasPermission,
+    isPremium,
+    isEditor,
+    isAdmin,
+  }
 
   return (
     <AuthContext.Provider value={value}>
       {children}
     </AuthContext.Provider>
-  );
-}; 
+  )
+} 

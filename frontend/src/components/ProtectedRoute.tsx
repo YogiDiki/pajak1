@@ -1,24 +1,44 @@
-import React from 'react';
-import { Navigate, useLocation } from 'react-router-dom';
-import { useAuth } from '../contexts/AuthContext';
-import LoadingSpinner from './LoadingSpinner';
+import { Navigate } from 'react-router-dom'
+import { useAuth } from '../contexts/AuthContext'
+import LoadingSpinner from './LoadingSpinner'
 
 interface ProtectedRouteProps {
-  children: React.ReactNode;
+  children: React.ReactNode
+  requirePremium?: boolean
+  requireEditor?: boolean
+  requireAdmin?: boolean
 }
 
-export const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ children }) => {
-  const { isAuthenticated, isLoading } = useAuth();
-  const location = useLocation();
+export default function ProtectedRoute({ 
+  children, 
+  requirePremium = false, 
+  requireEditor = false,
+  requireAdmin = false 
+}: ProtectedRouteProps) {
+  const { user, loading } = useAuth()
 
-  if (isLoading) {
-    return <LoadingSpinner />;
+  if (loading) {
+    return <LoadingSpinner />
   }
 
-  if (!isAuthenticated) {
-    // Redirect to login page with the return url
-    return <Navigate to="/login" state={{ from: location }} replace />;
+  if (!user) {
+    return <Navigate to="/login" replace />
   }
 
-  return <>{children}</>;
-}; 
+  // Check for premium access
+  if (requirePremium && user.role !== 'premium' && user.role !== 'editor' && user.role !== 'admin') {
+    return <Navigate to="/dashboard" replace />
+  }
+
+  // Check for editor access
+  if (requireEditor && user.role !== 'editor' && user.role !== 'admin') {
+    return <Navigate to="/dashboard" replace />
+  }
+
+  // Check for admin access
+  if (requireAdmin && user.role !== 'admin') {
+    return <Navigate to="/dashboard" replace />
+  }
+
+  return <>{children}</>
+} 

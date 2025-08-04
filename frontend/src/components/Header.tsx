@@ -15,7 +15,7 @@ const navigation = [
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const location = useLocation()
-  const { user, isAuthenticated, logout } = useAuth()
+  const { user, logout } = useAuth()
 
   const handleLogout = () => {
     logout()
@@ -61,7 +61,7 @@ export default function Header() {
               <Search className="w-5 h-5" />
             </button>
             
-            {isAuthenticated ? (
+            {user ? (
               <div className="flex items-center space-x-4">
                 <Link
                   to="/dashboard"
@@ -131,7 +131,7 @@ export default function Header() {
                 </Link>
               ))}
               <div className="pt-4 border-t border-gray-200 space-y-3">
-                {isAuthenticated ? (
+                {user ? (
                   <>
                     <Link
                       to="/dashboard"

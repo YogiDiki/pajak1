@@ -391,32 +391,33 @@ export default function Dashboard() {
           />
         )}
 
-                 {/* Sidebar */}
-         <div className={`fixed inset-y-0 left-0 z-50 w-64 bg-white shadow-lg transform transition-transform duration-300 ease-in-out lg:translate-x-0 lg:static lg:inset-0 ${
-           sidebarOpen ? 'translate-x-0' : '-translate-x-full'
-         }`}>
-           {/* Logo/Brand Section */}
-           <div className="flex items-center justify-between h-20 px-6 border-b border-gray-200 bg-gradient-to-r from-blue-50 to-purple-50">
-             <div className="flex items-center space-x-3">
-               <div className="w-10 h-10 bg-gradient-to-r from-blue-600 to-purple-600 rounded-xl flex items-center justify-center shadow-lg">
-                 <span className="text-white font-bold text-lg">T</span>
-               </div>
-               <div>
-                 <span className="text-lg font-bold text-gray-900">Taxonomy</span>
-                 <span className="block text-sm text-gray-600">Hub</span>
-               </div>
-             </div>
-             <button
-               onClick={() => setSidebarOpen(false)}
-               className="lg:hidden p-2 rounded-lg text-gray-400 hover:text-gray-600 hover:bg-gray-100"
-             >
-               <LogOut className="w-5 h-5" />
-             </button>
-           </div>
+        <div className="flex">
+          {/* Sidebar */}
+          <div className={`fixed inset-y-0 left-0 z-50 w-64 bg-white shadow-lg transform transition-transform duration-300 ease-in-out lg:translate-x-0 lg:static lg:inset-0 lg:relative lg:h-screen ${
+            sidebarOpen ? 'translate-x-0' : '-translate-x-full'
+          }`}>
+            {/* Logo/Brand Section */}
+            <div className="flex items-center justify-between h-20 px-6 border-b border-gray-200 bg-gradient-to-r from-blue-50 to-purple-50">
+              <div className="flex items-center space-x-3">
+                <div className="w-10 h-10 bg-gradient-to-r from-blue-600 to-purple-600 rounded-xl flex items-center justify-center shadow-lg">
+                  <span className="text-white font-bold text-lg">T</span>
+                </div>
+                <div>
+                  <span className="text-lg font-bold text-gray-900">Taxonomy</span>
+                  <span className="block text-sm text-gray-600">Hub</span>
+                </div>
+              </div>
+              <button
+                onClick={() => setSidebarOpen(false)}
+                className="lg:hidden p-2 rounded-lg text-gray-400 hover:text-gray-600 hover:bg-gray-100"
+              >
+                <LogOut className="w-5 h-5" />
+              </button>
+            </div>
 
-                       {/* Navigation Section */}
-            <div className="flex flex-col h-full">
-              <nav className="flex-1 px-4 pt-0">
+            {/* Navigation Section */}
+            <div className="flex flex-col flex-1">
+              <nav className="flex-1 px-4 pt-6">
                 <div className="space-y-2">
                   <h3 className="px-3 text-xs font-semibold text-gray-500 uppercase tracking-wider mb-6">
                     Menu Utama
@@ -441,56 +442,56 @@ export default function Dashboard() {
                 </div>
               </nav>
 
-             {/* Bottom Section */}
-             <div className="px-4 pb-8">
-               <div className="border-t border-gray-200 pt-6">
-                 <button className="group flex items-center w-full px-4 py-4 text-sm font-medium text-gray-600 rounded-xl hover:bg-red-50 hover:text-red-700 transition-all duration-200">
-                   <LogOut className="w-5 h-5 mr-3" />
-                   Keluar
-                 </button>
-               </div>
-             </div>
-           </div>
-         </div>
+              {/* Bottom Section */}
+              <div className="px-4 pb-8">
+                <div className="border-t border-gray-200 pt-6">
+                  <button className="group flex items-center w-full px-4 py-4 text-sm font-medium text-gray-600 rounded-xl hover:bg-red-50 hover:text-red-700 transition-all duration-200">
+                    <LogOut className="w-5 h-5 mr-3" />
+                    Keluar
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
 
-                 {/* Main content */}
-         <div className="lg:pl-64">
-           {/* Top header */}
-           <div className="bg-white shadow-sm border-b border-gray-200">
-             <div className="flex items-center justify-between h-16 px-4 sm:px-6 lg:px-8">
-               <div className="flex items-center">
-                 <button
-                   onClick={() => setSidebarOpen(true)}
-                   className="lg:hidden p-2 rounded-md text-gray-400 hover:text-gray-600 hover:bg-gray-100"
-                 >
-                   <Menu className="w-6 h-6" />
-                 </button>
-                 <div className="ml-4 lg:ml-0">
-                   <h1 className="text-2xl font-bold text-gray-900">Dashboard</h1>
-                 </div>
-               </div>
-               
-               <div className="flex items-center space-x-4">
-                 <button className="p-2 text-gray-400 hover:text-gray-600 hover:bg-gray-100 rounded-lg">
-                   <Search className="w-5 h-5" />
-                 </button>
-                 <button className="p-2 text-gray-400 hover:text-gray-600 hover:bg-gray-100 rounded-lg relative">
-                   <Bell className="w-5 h-5" />
-                   <span className="absolute top-1 right-1 w-2 h-2 bg-red-500 rounded-full"></span>
-                 </button>
-                 <div className="flex items-center space-x-3">
-                   <div className="w-8 h-8 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full flex items-center justify-center">
-                     <span className="text-white font-bold text-sm">A</span>
-                   </div>
-                   <span className="hidden sm:block text-sm font-medium text-gray-700">Administrator</span>
-                 </div>
-               </div>
-             </div>
-           </div>
+          {/* Main content */}
+          <div className="flex-1">
+            {/* Top header */}
+            <div className="bg-white shadow-sm border-b border-gray-200">
+              <div className="flex items-center justify-between h-16 px-4 sm:px-6 lg:px-8">
+                <div className="flex items-center">
+                  <button
+                    onClick={() => setSidebarOpen(true)}
+                    className="lg:hidden p-2 rounded-md text-gray-400 hover:text-gray-600 hover:bg-gray-100"
+                  >
+                    <Menu className="w-6 h-6" />
+                  </button>
+                  <div className="ml-4 lg:ml-0">
+                    <h1 className="text-2xl font-bold text-gray-900">Dashboard</h1>
+                  </div>
+                </div>
+                
+                <div className="flex items-center space-x-4">
+                  <button className="p-2 text-gray-400 hover:text-gray-600 hover:bg-gray-100 rounded-lg">
+                    <Search className="w-5 h-5" />
+                  </button>
+                  <button className="p-2 text-gray-400 hover:text-gray-600 hover:bg-gray-100 rounded-lg relative">
+                    <Bell className="w-5 h-5" />
+                    <span className="absolute top-1 right-1 w-2 h-2 bg-red-500 rounded-full"></span>
+                  </button>
+                  <div className="flex items-center space-x-3">
+                    <div className="w-8 h-8 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full flex items-center justify-center">
+                      <span className="text-white font-bold text-sm">A</span>
+                    </div>
+                    <span className="hidden sm:block text-sm font-medium text-gray-700">Administrator</span>
+                  </div>
+                </div>
+              </div>
+            </div>
 
-                       {/* Page content */}
-            <div className="pt-0">
-              <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            {/* Page content */}
+            <div className="p-8">
+              <div className="max-w-7xl mx-auto">
                 <Routes>
                   <Route path="/" element={<DashboardHome />} />
                   <Route path="/learning" element={<LearningHistory />} />
@@ -500,7 +501,8 @@ export default function Dashboard() {
                 </Routes>
               </div>
             </div>
-         </div>
+          </div>
+        </div>
 
         {/* Floating Action Button */}
         <div className="fixed bottom-6 right-6 z-50">
